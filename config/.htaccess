@@ -1,0 +1,12 @@
+<Files ~ "\.inc$">
+Order allow,deny
+Deny from all
+</Files>
+<Files ~ "\.ini$">
+Order allow,deny
+Deny from all
+</Files>
+<Files ~ "\.swp$">
+Order allow,deny
+Deny from all
+</Files>

@@ -1,0 +1,1520 @@
+/* Main PayZen */
+html {
+	}
+body {
+	margin-top: 40px;
+	margin-bottom: 0;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0;
+	text-align:center;
+	line-height: 1.88889;
+	padding: 0;
+	font-family:   Arial, sans-serif;
+	font-size:13px;
+	color:#333;
+}
+
+#transactionInfoBlock, #multiPaymentMeanBlock, #paymentResult, #forwardMsg, #infoMessage, #cetelemValidationSummary, #adressePayeurCetelem, #commencementCetelem, #paymentCofinogaResult {
+	display: none;
+}
+
+#backToBoutiqueBlock {
+	margin-top: 30px;
+	margin-bottom: 20px;
+	width: 40%; 
+	background: transparent bottom right no-repeat;
+}
+
+#paymentMeanChoiceBlock, #cardDataInputBlock {
+	margin-right: auto;
+	margin-left: auto;
+	left: 0;
+	background: transparent bottom right no-repeat;
+}
+
+p { 
+	margin-top: 0; 
+	text-align: justify;
+	}
+h3 { 
+	font: italic normal 1.4em georgia, sans-serif;
+	letter-spacing: 1px; 
+	margin-bottom: 0; 
+	color: #7D775C;
+	}
+	
+img {
+border: 0px;
+	}
+	
+a:link { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: #773306;
+	}
+a:visited { 
+	font-weight: bold; 
+	text-decoration: none; 
+	color: #e7d6ce;
+	}
+a:hover, a:active { 
+	text-decoration: underline; 
+	color: #773306;
+	}
+acronym {
+	border-bottom: none;
+	}
+.ensureDivHeight {	
+	display: none;
+}
+
+#container {
+	width: 0px; 
+	margin: 0px 0px 0px 0px; 
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+	background-color: #FFFFFF;
+
+}
+
+#containerAide {
+	width: 800px;
+	margin: -60px 0px 0px 0px; 
+	position: relative;
+}
+
+#footerAide {
+	position: relative; 
+	height:107px;
+	width: 800px;
+	vertical-align:bottom;
+}
+
+#footer {
+	display: none;
+}
+
+#copyrightBlock {
+	display: none;
+}
+
+#logo{
+	display: none;
+	}
+	
+#mention{
+	border: 0px;
+	float:right;
+	margin-right: 335px;
+	top: 0;
+	height: 90 px;
+	padding-bottom: 6px;	
+	}
+
+
+#blockFooter {
+	height: 44px;
+	width: 700px;
+	margin-right:90px;
+	float:right;
+	padding:10px;
+	font-family:   Arial, sans-serif;
+	font-size: 14px;
+	font-weight:bold;
+	color: #B3D43B;
+}
+
+#LoginBlock {
+	width: 1000px; 
+	height: 230px;
+	font: 12px   Arial, sans-serif;
+	text-align : right;
+	padding: 10px;
+	
+}
+
+#paymentSolutionInfo {
+	display: none;
+}
+
+#paymentboutiqueInfo {
+	margin-top: 0px; 
+	margin-left: 0px; 
+	position: relative; 
+	top: 0; 
+	left: 0;
+	width: 700px; 
+	font: 10px   Arial, sans-serif;
+	padding: 10px; 
+	text-align : center;
+	border:1px solid brown;
+}
+
+#boutiqueInfoBlock {
+	/*float:left; */
+	margin-top: 20px; 
+	margin-bottom: 10px; 
+	position: left; 
+	width: inherit; 
+	height: inherit;
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+}
+
+#paymentMeanInfoBlock {
+	float:right;
+	margin-right:0px;
+	margin-top: 0px; 
+	height: inherit;
+	width: 150px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+}
+
+#AideLogoBlock {
+	float:right;
+	margin-right:130px;
+	margin-top: 20px; 
+	height: inherit;
+	width: 180px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 0px 20px 10px 10px; 
+}
+
+#SupportBlock {
+	margin-top: 50px; 
+	margin-left: 200px; 
+	margin-bottom: 0px;
+	margin-right: 50px;
+	position: right; 
+	top: 0; 
+	left: 0;
+	width: 700px; 
+	font: 12px   Arial, sans-serif;
+	text-align : right;
+	padding: 0px; 
+}
+
+#AideBlock {
+	margin-top: 20px; 
+	margin-left: 0px; 
+	margin-bottom: 0px;
+	margin-right: 40px;
+	font: 10px   Arial, sans-serif;
+	text-align : left;
+	float: right;
+	padding: 0px; 
+}
+
+#AideBlock ul{
+	margin: 5px;
+	float: left;
+	list-style-type:none;
+	list-style-image: url('li.gif');
+	list-style-position:inside;
+	}
+
+
+#paymentMeanSecureBlock {
+	display: none;
+}
+
+#paymentMeanSecureBlock img{
+	display: none;
+}
+
+#paymentMeanSecureBlock2 {
+	display: none;	
+}
+
+
+
+#transactionInfoBlock {
+	display: none;
+}
+
+table#TopBlock {
+	margin-top: -80px; 
+	margin-right: auto;
+	margin-left: auto;
+	width: 700px; 
+	height: inherit;
+	border: hidden;
+	float: inherit;
+	text-align: left;
+}
+	
+td#TopBlock {
+	vertical-align:middle;
+}
+
+#paymentMeanChoiceBlock {
+	margin-top: 40px;
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 10px; 
+	float: right;
+	width: 550px;
+	border: 1px solid #CCCCCC;
+	border-radius: 15px;
+}
+
+#cardDataInputBlock {
+	margin-top: 40px;
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 10px;
+	float: right;
+	width: 570px;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+}
+
+#cardDataInputBlock p{
+	margin-left:5px;
+}
+
+#paymentResult {
+	font: 10px   Arial, sans-serif;
+	text-align: center;
+	padding: 10px; 
+	clear: both;
+	width: 80%;
+	padding-top: 30px;
+}
+
+#forwardMsg {
+	margin-top: 20px; 
+	font: 10px   Arial, sans-serif;
+	text-align: center;
+	padding: 10px; 
+}
+
+#infoMessage {
+	margin-top: 20px; 
+	padding: 10px 10px 50px 10px;
+	font: 12px   Arial, sans-serif;
+	text-align: center;
+	border:0px solid #773306;
+}
+
+#infoMessage textarea{
+	width:700px;
+}
+
+#paymentSummary {
+	margin-top: 10px; 
+    margin-left:auto;
+    margin-right:auto;
+	font: 11px   Arial, sans-serif;
+	text-align: left;
+	padding: 10px;
+    width:700px;
+    background: #e3e3e3;
+	border-radius: 15px;
+	clear: both;
+	border: 1px solid black;
+}
+
+#backToBoutiqueBlock {	
+	text-align: right;
+	clear: both;
+	float: right;
+}
+
+#redirectMessageBlock {
+	width: 700px; 
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+#message_mode_test {
+	display: none;
+}
+
+#message_mode_test .helpMessageTitle {
+	color : red;
+	font-weight : bold;
+	text-decoration : underline;
+	margin-bottom:0px;
+}
+
+#message_mode_test a {
+	font-size: 1em;
+	color:#773306;
+}
+
+#message_mode_test li {
+	font-size: 0.8em;
+	vertical-align:bottom;
+	color:black;
+	text-align:left;
+}
+
+#boutiqueInfoBlock p {
+	font: italic 10pt/22pt georgia; 
+	text-align:center;
+}
+#title {
+	width:1013px;	
+	height: 75px;
+	font: 12px   Arial, sans-serif;
+	background:url('bandeau.png');
+	background-position:top left;
+	background-repeat:no-repeat;
+	text-align:left;
+	background-color: transparent;
+	padding-top: 22px;
+	padding-left: 10px;
+}
+
+#title span{
+    font: bold 24px Arial, sans-serif;
+	color: #888888;
+}
+
+#titleAide {
+	width: 800px;
+	height: 50px;
+	font: 12px   Arial, sans-serif;
+
+}
+#transactionInfoBlock .titleContainer {
+	display: none;
+}
+
+.aidetitle {
+    font: bold 12px   Arial, sans-serif;
+	color:#000000;
+	padding-top:8px;
+	padding-bottom:10px;
+	padding-left:10px;
+	margin-bottom:20px;
+	margin-left:130px;
+	margin-right:130px;
+	background-color:#d6d6d4;
+	text-align:left;
+	border-top: solid 5px #a6c643;
+	border-bottom: solid 5px #a6c643;
+	opacity: 0.7;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.message {
+	font: bold 14px   Arial, sans-serif;
+	color:#220000;
+	margin-bottom:10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.mess_small {
+	font: normal 10px   Arial, sans-serif;
+	color:#220000;
+	text-align:left;
+}
+
+.mess_aide {
+	font: normal 12px   Arial, sans-serif;
+	color:#220000;
+	text-align:Justify;
+	padding-right:10px;
+    padding-top:20px;
+    padding-bottom:20px;
+	padding-left: 130px;
+	clear: both;
+	width: 500px;
+}
+
+.mess_error{
+	margin-top: 20px;
+	margin-bottom: 15px;
+	font: bold 12px   Arial, sans-serif;
+	color:#FF0000;
+	text-align:left;
+}
+
+.thanks {
+	font: bold 12px   Arial, sans-serif;
+	color:#220000;
+	margin-bottom:10px;
+	margin-top:10px;
+}
+
+.validationButton {
+background: #a6c643; 
+background: -moz-linear-gradient(top, #a6c643 0%, #89A341 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c643), color-stop(100%,#89A341)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #a6c643 0%,#89A341 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #a6c643 0%,#89A341 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #a6c643 0%,#89A341 100%); /* IE10+ */
+background: linear-gradient(to bottom, #a6c643 0%,#89A341 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6c643', endColorstr='#89A341',GradientType=0 ); /* IE6-9 */
+border: 1px solid #000000;
+padding: 5px;
+cursor: pointer;
+text-align: center;
+}
+
+.validationButton:hover {
+background: #0f5b97; /* Old browsers */
+background: -moz-linear-gradient(top, #89A341 0%, #a6c643 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#89A341), color-stop(100%,#a6c643)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #89A341 0%,#a6c643 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #89A341 0%,#a6c643 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #89A341 0%,#a6c643 100%); /* IE10+ */
+background: linear-gradient(to bottom, #89A341 0%,#a6c643 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89A341', endColorstr='#a6c643',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+.validationButton:active {
+background: #a6c643; /* Old browsers */
+background: -moz-linear-gradient(top, #a6c643 0%, #89A341 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c643), color-stop(100%,#89A341)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, #a6c643 0%,#89A341 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, #a6c643 0%,#89A341 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, #a6c643 0%,#89A341 100%); /* IE10+ */
+background: linear-gradient(to bottom, #a6c643 0%,#89A341 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6c643', endColorstr='#89A341',GradientType=0 ); /* IE6-9 */
+}
+
+.validationButton span em {
+color: #FFFFFF;
+font-size: 16px;
+font-weight: bold;
+font-style: normal;
+text-shadow: 1px 1px #A0A0A0;
+}
+padding: 7px;
+border-radius: 5px !important;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-o-border-radius: 10px;
+-ms-border-radius: 10px;
+width: 30%;
+box-shadow: 3px 3px 1px #888888;
+}
+.validationButton {
+background: #a6c643;
+background: -moz-linear-gradient(top, #a6c643 0%, #89A341 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a6c643), color-stop(100%,#89A341));
+background: -webkit-linear-gradient(top, #a6c643 0%,#89A341 100%);
+background: -o-linear-gradient(top, #a6c643 0%,#89A341 100%);
+background: -ms-linear-gradient(top, #a6c643 0%,#89A341 100%);
+background: linear-gradient(to bottom, #a6c643 0%,#89A341 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6c643', endColorstr='#89A341',GradientType=0 );
+border: 1px solid #000000;
+padding: 5px;
+cursor: pointer;
+text-align: center;
+}
+
+.backToBoutiqueButton{
+	cursor: pointer;
+	cursor: hand;
+	border:none;
+	background:none;
+	width:auto;
+	margin:0;
+	padding:0px 0px 0 0;
+	/*color:#773306;*/
+	overflow:visible;
+	text-align:center;
+	white-space:nowrap;	
+}
+
+.validationButton {
+padding: 7px;
+border-radius: 5px !important;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-o-border-radius: 10px;
+-ms-border-radius: 10px;
+width: 50%;
+}
+
+.backToBoutiqueButton span, .backToBoutiqueButton em{
+	cursor: pointer;
+	cursor: hand;
+	display:block;
+	line-height:20px;
+	margin: 0;
+}
+.backToBoutiqueButton span {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.backToBoutiqueButton {
+padding: 5px;
+cursor: pointer;
+text-align: right;
+}
+
+.backToBoutiqueButton span em {
+color: #808080;
+font-size: 14px;
+font-weight: bold;
+}
+
+#transactionInfoBlock ul {
+	font: bold 12px arial; 
+	margin: 15px;
+	float: left;
+	list-style-type:none;
+}
+
+#paymentMeanChoiceBlock  .message {
+	text-align:left;
+}
+
+#paymentMeanChoiceBlock .choiceLabel {
+	font: bold 14px arial; 
+	/* Hack pour afficher correctement sous FF2.0, il ne comprend pas inline-block */
+	display: table-cell;
+	display:inline-block;
+	margin: 15px;
+	padding: 5px;
+}
+
+#paymentMeanChoiceBlock .choiceLabel:hover {
+	font: bold 14px arial; 
+	cursor:pointer;
+	cursor: hand;
+	/* Hack pour afficher correctement sous FF2.0, il ne comprend pas inline-block */
+	display: table-cell;
+	display:inline-block;
+	margin: 15px;
+}
+
+#cardDataInputBlock .paramLabel {
+	font: bold 14px arial; 
+	margin: 5px;
+	text-align: left;
+	vertical-align: -webkit-baseline-middle;
+}
+
+#cardDataInputBlock .paramLabel a{
+	font: bold 12px arial; 
+	color: #555753;
+	margin: 0px;
+	text-align: left;
+	cursor:help;
+	text-decoration:none;
+}
+
+#cardDataInputBlock .paramLabel a:hover{
+	font: bold 12px arial; 
+	margin: 0px;
+	text-align: left;
+	cursor:help;
+	text-decoration:none;
+}
+
+#cardDataInputBlock .paramTitle {
+	font: bold 12px arial; 
+	margin: 5px;
+	float: left;
+}
+
+#cardDataInputBlock ul {
+	font: bold 12px arial; 
+	margin: 5px;
+	float: left;
+	list-style-type:none;
+}
+
+#cardDataInputBlock .paramInput {
+	font: bold 12px arial;
+	text-align : left;
+	vertical-align: -webkit-baseline-middle;
+}
+
+.cardNumber {
+	width : 160px;
+}
+
+#cardDataInputBlock  .message {
+	text-align:justify;
+	}
+
+.choiceLabel img {
+	height : 36px;
+}
+
+.choiceLabel img:hover {
+	height : 36px;
+	cursor:pointer;
+	cursor: hand;	
+}
+
+.logoBoutique  {
+}
+.infoTransactionTable {
+	border : 0px;
+	font: bold 12px arial;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.InfosPayCenter {
+	width: 20px;
+}
+
+.infoTransactionLeft {
+	text-align:left;
+	width : 45%;
+	font: bold 12px arial;
+	white-space: nowrap;
+}
+
+.infoTransactionMiddle {
+	width: 2%;
+	text-align:center;
+	margin-left : 5px;
+}
+
+.infoTransactionRight {
+	text-align:left;
+	width : 15%;
+	font: bold 12px arial;
+}
+
+.paymentMeanList {
+	text-align: center;
+	clear: both;
+	position: relative;
+	top: 10px;
+}
+
+.copyright{	
+    font: bold 12px helvetica, verdana,sans-serif;
+    margin-right: 0;
+    margin-top: -35px;
+    text-align: center;
+}
+
+.redirectMessage{
+	font: bold 12px   Arial, sans-serif;
+	color:#FF0000;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.donneeLongIdent {
+	text-align:center;
+}
+
+.donneeNumerique {
+	padding-right:3px;
+	text-align:right;
+}
+
+.donneeDate {
+	padding-left:3px;
+	text-align:left;
+}
+
+th.donneeLongIdent, th.donneeNumerique, th.donneeDate {
+	background-color: #FFFFFF;
+}
+
+#echeancier{
+	display: none;
+}
+
+table#installments {
+	display: none;
+}
+
+#InfosPayLeft{
+	float:left;
+	padding-left:10px;
+	text-align:right;
+}
+
+#InfosPayRight{
+	float:left;
+	padding-left:10px;
+	text-align:left;
+	margin-left:5px;
+}
+
+#Echeance{
+	float:left;
+	padding-left:10px;
+	text-align:right;
+	vertical-align:bottom;
+	margin-top:10px;
+}
+
+table#mail {
+	border:1px solid #C8E4A7;
+	margin-right:3%;
+	float: left;
+}
+
+.title_table {
+	font: bold 12px   Arial, sans-serif;
+	color:#333333;
+	padding-left:10px;
+	/*background-color:#e3e3e3;*/
+	height:20px;
+	text-align:left;
+	/*display: none;*/
+}
+
+table#login a{
+	font-weight:bold;
+	text-decoration:none;
+	color: #773306;
+	padding-right:10px;
+	padding-top: 10px; 
+}
+
+table#login a:hover{
+	font-weight:bold;
+	text-decoration:none;
+	color: #B3D43B;
+	padding-right:10px;
+	padding-top: 10px; 
+}
+
+table#login .donneeLogin{
+	text-align:right;
+	 
+}
+
+table#login .paramLogin{
+	text-align:left;
+	 
+}
+table#login .donneePass{
+	padding-bottom: 5px;
+	padding-top: 5px;
+	 
+}
+
+table .color1 {
+background-color:#FFFFFF;
+}
+
+table .color2 {
+background-color:#e3e3e3;
+}
+
+.aide a{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	text-decoration:none;
+	color: #773306;
+}
+
+.aide a:hover{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	font-weight:normal;
+	text-decoration:underline;
+	color: #773306;
+}
+
+.aide img{
+	border:none;
+	vertical-align:middle;
+	}
+
+.inputLogin{
+	width: 150px;
+}
+
+form label span{
+	cursor: pointer;
+	cursor: hand;
+}
+
+#cetelemValidationSummary {
+	margin-top: 10px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 10px; 
+}
+
+#cetelemValidationSummaryTable {
+	border : 0px;
+	font: bold 12px arial;
+}
+#cetelemValidationSummaryTable td {
+	padding-right:10px;
+	vertical-align:top;
+}
+#cetelemValidationSummaryTable td.ticket {
+	text-align:justify;
+	width:22em;	
+}
+#cetelemValidationSummaryTable td.message {
+	padding-left:10px;
+}
+
+.cetelem_print {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+div#puces_cetelem {
+	vertical-align:middle;
+	text-align:center;
+}
+
+
+#adressePayeurCetelem {
+	margin-top: 10px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 10px; 
+}
+
+
+#adressePayeurCetelem p {
+	margin-left:20px;
+}
+
+#adressePayeurCetelem .paramLabel {
+	margin-left :15px;
+}
+
+#adressePayeurCetelem #label_adresse_cetelem {
+	vertical-align:top;
+}
+
+#commencementCetelem {
+	margin-top: 10px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	padding: 10px; 
+}
+
+#commencementCetelem .choice {	
+	width:60em; 
+}
+#commencementCetelem p {	
+	margin-left:20px;
+}
+
+div#contrat_cetelem {
+	border: 2px solid #e7d6ce;
+}
+
+.cvvBody {
+	width: 800px;
+	height: 570px;
+}
+
+.cvvBodyAmex {
+	width: 670px;
+	height: 565px;
+}
+
+#pleaseWaitDiv {
+	margin-top: 10px; 
+	font: 14px Arial, sans-serif;
+	font-weight: bold;
+	text-align : center;
+	padding: 10px;
+	top: -200px;
+	left: 200px; 
+}
+
+#pleaseWaitDiv > span {
+	font: 10px   Arial, sans-serif;
+	font: bold 12px   Arial, sans-serif;
+	color:#220000;
+}
+
+.loadingImg {
+	vertical-align: middle;
+	margin-top: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#locales {
+	padding-bottom: 0.5em;
+	padding-top: 22px;
+	position: relative;
+	left: 100px;
+}
+#locales form {
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+}
+.localFlag {
+	display:inline;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    padding: 1px;
+	border: 1px solid #FFFFFF;
+}
+
+.selectedFlag {
+	border: 1px solid #808080;
+}
+
+.cvvHelpText {
+	color:#773306;
+	text-decoration: italic;
+}
+
+#paymentCofinogaResult {
+  margin-bottom: 20px; 
+  text-align: left;
+  clear: both;
+}
+
+#paymentCofinogaResult li {
+  margin-bottom: 10px;
+}
+
+.textzone p {
+  padding:0px 6px 0px 6px;
+  font:normal 1.2em arial;
+  color: #000000;
+  text-align:left;
+  overflow:auto;
+}
+
+.textzone b {
+  color:red;
+}
+ 
+.textzone .citation {
+  padding:15px 15px 15px 15px;
+  margin:0px;
+  font:normal 1em monospace;
+  background-color:#FFFFCC;
+}
+
+.textzone a {
+  color:#773306;
+}
+
+#getTicketBlock{
+  margin-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
+}
+
+.pdfLink{
+  background : url('pdf.gif') no-repeat transparent;
+  padding-left: 18px;
+  border : none;
+  cursor: pointer;
+}
+
+#multiPaymentMeanBlock {
+    font: 12px verdana,sans-serif;
+    padding: 10px;
+    text-align: center;
+	float: left;
+	border: 1px solid #CCCCCC;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px #888888;
+	margin-left: 20px;
+	width: 545px;
+	margin-top: 40px;
+}
+.donneeCardImage img {
+    height: 25px;
+}
+
+table#paymentMeans {
+    border: 1px solid #999999;
+    border-spacing: 0;
+    display: inline-table;
+    border-collapse: collapse;
+}
+
+#paymentMeans .donneeCardImage {
+    border-bottom: 1px solid #999999;
+}
+
+#paymentMeans .donneeLongIdent {
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+#paymentMeans .donneeNumerique {
+    border-bottom: 1px solid #999999;
+    padding-left: 10px;
+    padding-right: 5px;
+    text-align: left;
+}
+
+#paymentMeans .donneeIcon {
+    border-bottom: 1px solid #999999;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 30px;
+}
+
+#paymentMeans .color1 {
+    background-color: #FFFFFF;
+}
+
+#paymentMeans .color2 {
+    background-color: #FFFFFF;
+}
+
+.subtitle_table {
+	font: 12px   Arial, sans-serif;
+	color:#333333;
+	padding-left:10px;
+	background-color:#e3e3e3;
+	height:20px;
+	text-align:left;
+}
+
+.transactionTitle {
+    border-bottom: 1px solid #999999;
+    padding-top: 10px;
+    width: 100%;
+}
+
+.transactionTitle .titleValue {
+    width: 100%;
+    padding-left: 5px;
+}
+
+.transactionTitle .title_table {
+    background: none;
+}
+
+
+#multiPaymentMeanSecureBlock span {
+    float: right;
+}
+
+#multiPaymentMeanSecureBlock {
+	float:right;
+	margin-right:10px;	
+	margin-top: -95px;
+	height: 80px;
+	width: 340px; 
+	font: 10px   Arial, sans-serif;
+	text-align : center;
+	position: relative;
+	z-index: 999;
+	background-position-y: 10px;
+}
+
+#multiPaymentMeanSecureBlock img {
+    height: 36px;
+}
+
+#multiPaymentResult, #otherPaymentResult{
+    padding-bottom: 10px;
+    padding-top: 20px;
+	font: 10px   Arial, sans-serif;
+	text-align: center;
+}
+
+.warningMessage {
+	color: #BB3306;
+}
+
+#multiPaymentResult .message {
+    margin: 0px;
+}
+
+#multiPaymentMeansNotice {
+    margin-top: 10px;
+}
+
+#askForMultiPaymentMean {
+    font: 10px verdana,sans-serif;
+    margin-top: 50px;
+    text-align: center;
+	clear: both;
+}
+
+#askMultiPaymentMeanButtons #validationButtonWrapper {
+    display: inline;
+}
+
+#askMultiPaymentMeanButtons {
+	margin-top: 20px;
+}
+
+.trashButton {
+	background-image: url('trash.png');
+	background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    height: 16px;
+}
+
+.trashButton:hover {
+	background-image: url('trash_hover.png') ;
+}
+
+#multiPaymentMeansNotice .mess_small {
+	font: normal 12px   Arial, sans-serif;
+	color: #1F497D;
+}
+
+.asterisk {
+	color: #1F497D;
+}
+
+.warning_testMode {
+	color: red;
+}
+
+
+/* New Styles for payment pages*/
+#paymentMeanChoiceBlock .titleContainer {
+	/*font: bold 24px   Arial, sans-serif;
+	color:#888888;
+	padding-bottom:20px;*/
+	display: none;
+}
+
+#cardDataInputBlock .titleContainer {
+	font: bold 24px  Arial, sans-serif;
+	color:#888888;
+	padding-bottom:20px;
+}
+
+
+.gototop   {
+    border-radius: 90px 90px 90px 90px;
+    cursor: pointer;
+    height: 41px;
+    overflow: hidden;
+    text-align: center;
+    width: 41px;
+    z-index: 9;
+    background: none repeat scroll 0 0 #A3C643;
+    float: right;
+	position: relative;
+	left: -60px;
+	top: -85px;
+}
+
+.choiceMessageLabel {
+	font: bold 14px Verdana;
+}
+
+.cardDataMessageLabel {
+	width: 500px;
+}
+
+.vads-expiry-date-input {
+	width: 80px;
+}
+
+#paymentSummary .titleContainer {
+	font: bold 24px   Arial, sans-serif;
+	color:#888888;
+	padding-bottom:20px;
+}
+
+
+#pleaseWaitDiv .titleContainer {
+	font: bold 24px Arial, sans-serif;
+	color: #888888;
+	padding-bottom: 20px;
+}
+
+#PayZenCSS {
+	
+}
+
+#paymentMeansContainer {
+	width: 570px;
+}
+
+#cardDataInfoContainer {
+}
+
+#blockScreen {
+	position:fixed;
+	z-index: 1001; 
+	top:0; left:0; bottom:0; right:0;
+	background: #000000;
+	opacity: 0.5;
+	display: none;
+	filter: alpha(opacity=50); /* IE 8 */ 
+}
+
+#pleaseWaitPanel {
+	z-index: 1002;
+	position: relative;
+	background-color: #FFFFFF;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	box-shadow: 10px 10px 5px #FFFFFF inset;
+	border-radius: 10px;
+	position: fixed;
+	top: 40%;
+	left: 40%;
+}
+
+#validationButtonWrapper {
+	clear: both;
+	padding-top: 40px;
+}
+
+form .paramInput input, form .paramInput select {
+border-radius: 5px !important;
+appearance: none;
+/*-webkit-appearance: none;*/
+-moz-appearance: none;
+-o-appearance: none;
+-ms-appearance: none;
+border-radius: 10px;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-o-border-radius: 10px;
+-ms-border-radius: 10px;
+margin: 0px !important;
+box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+-ms-box-sizing: border-box;
+padding: 5px !important;
+background: #FFFFFF !important;
+box-shadow: inset 0px 1px 1px #ABABAB;
+-webkit-box-shadow: inset 1px 1px 1px #ABABAB;
+-moz-box-shadow: inset 0px 1px 1px #ABABAB;
+}
+
+form .paramInput input[type='radio'] {
+   appearance: radio;
+	-webkit-appearance: radio;
+	-moz-appearance: radio;
+	-o-appearance: radio;
+	-ms-appearance: radio;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+}
+
+/*Correctly center cvv help */
+div[align=center] {
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#shopLogo {
+	/*height: 105px;*/
+	width: 100%;
+	text-align: left;
+}
+
+#puces_cetelem {
+	margin-top: 20px !important;
+}
+
+#boutons_legaux .validationButton {
+	width: auto;
+}
+
+#cetelemValidationSummary .validationButton {
+	margin-top: 20px
+}
+
+#askMultiPaymentMeanButtons .validationButton {
+	width: auto;
+}
+
+@-moz-document url-prefix() {
+    #paymentMeanSecureBlock {
+        top: 100px;
+    }
+	#paymentMeanSecureBlock img {
+		top: -20px;
+	}
+}
+
+#messageCurrConversion {
+	text-align: left;
+	display: table-cell;
+	vertical-align: bottom;
+}
+
+#transactionData .message {
+	margin-bottom: 20px;
+}
+
+.titleBorder {
+	text-align: center;
+}
+
+.justify {
+	text-align: justify;
+	display: block;
+}
+
+/*
+* SDD PLUGIN
+*/
+#sddPaymentForm {
+	text-align:left;
+}
+.mandatory {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+}
+#sddPaymentForm .paramLabel {
+    display: inline;
+    float: left;
+    clear: left;
+    width: 30%;
+    text-align: right;
+    margin-top: 10px;
+}
+#sddPaymentForm .paramInput {
+    display: inline;
+    float:left;
+    margin-top: 5px;
+}
+#sddPaymentForm .message,.mess_small {
+    clear: both;
+}
+#sddPaymentForm .formSection {
+	test-align:left;
+    margin:20px;
+}
+#sddPaymentForm .formSectionTitle {
+	font: bold 14px   Arial, sans-serif;
+	text-align: left;
+	color:#220000;
+}
+
+#sddPaymentForm .help_anchor {
+	margin-top: 10px;
+}
+#sddPaymentForm .paramInputDisplay {
+    margin-top:12px;
+}
+/*
+* CREDIT CARD PLUGIN
+*/
+#creditCardPaymentForm .paramLabel {
+    display: inline;
+    float: left;
+    margin-left: 10px;
+	margin-top: 12px;
+}
+#creditCardPaymentForm .paramInput {
+    display: inline;
+    float:left;
+    margin-top: 5px;
+}
+
+#creditCardPaymentForm .help_anchor {
+	margin-top: 12px;
+}
+
+#creditCardPaymentForm .paramInput[type='checkbox'] {
+	margin-top: 14px;
+}
+
+/*
+* COMMONS PLUGIN
+*/
+.info {
+	font: normal 12px   Arial, sans-serif;
+	text-align: left;
+	color:#220000;
+	display:inline;
+}
+
+.form_line {
+	display:block;
+	float:left;
+	width:100%;
+}
+
+.help_anchor .help_popup {
+    position: absolute;
+    display:none;
+    z-index: 100;
+    min-width: 200px;
+    max-width: 400px;
+}
+.help_anchor:hover .help_popup {
+    display:inline;
+    right: 0;
+    margin-top: 12px;
+    background: #ffffff;
+    border: 1px dotted;
+    padding: 5px;
+}
+
+
+
+/*
+* SEPAMAIL PLUGIN
+*/
+#sepamailPaymentForm {
+	text-align:left;
+}
+
+#sepamailPaymentForm .paramLabel {
+    display: inline;
+    float: left;
+    clear: left;
+    width: 30%;
+    text-align: right;
+    margin-top: 10px;
+}
+#sepamailPaymentForm .paramInput {
+    display: inline;
+    float:left;
+    margin-top: 5px;
+}
+#sepamailPaymentForm .message,.mess_small {
+    clear: both;
+}
+#sepamailPaymentForm .formSection {
+	test-align:left;
+    margin:20px;
+}
+#sepamailPaymentForm .formSectionTitle {
+	font: bold 14px   Arial, sans-serif;
+	text-align: left;
+	color:#220000;
+}
+
+#sepamailPaymentForm .help_anchor {
+	margin-top: 10px;
+}
+
+.copyrightThreeDS {
+	position: relative;
+	top: -60px;
+}
