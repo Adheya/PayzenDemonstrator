@@ -1,0 +1,214 @@
+<!--
+ * The MIT License (MIT)
+ *
+ * Copyright (c) 2015 Lyra-Network & contributor
+ *
+ * PayZen Demonstrator
+ * This project provide an easy way to test 
+ * and demonstrate all the Payzen Capabilities 
+ *
+ * AngularJS and PHP  
+ *
+ * Author link : www.payzen.eu 
+ *               www.lyra-network.com
+ *
+ * NOTICE OF LICENSE
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * @author    Arnold Mahe <arnoldmahe@gmail.com>
+ * @copyright 2015 Lyra-Network and contributors
+ * @license   The MIT License (MIT)
+ * @version   X.X.X (revision xxxxxxx)
+*/ -->  
+	
+
+
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+			<div class="container-fluid">
+
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						 <span class="sr-only">Toggle navigation</span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+						 <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href='#/Démo'>Démo</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li ng-repeat = "nav in menu track by $index"><a href='#/{{nav}}'>{{nav}}<span class="sr-only">(current)</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+		<!-- /.navbar -->
+		<div class="container">
+			<div class={{colSize}} ng-init = "parentindex = $index;requestSiteId(readDataSiteId,$index);" ng-repeat = "conf in config track by $index">
+				<div class="panel panel-default">
+					<div class="panel-heading" ng-if="!config[$index].text">
+					  <div class="pull-right"><button type="button" class="btn btn-default " ng-click ="hide($index)" ng-if="help[$index]">Help</button></div>
+						<div class="pull-right">
+							<a href="#/{{conf['Title1']}}/{{conf['anchor']}}">
+								<button type="button" class="btn btn-default "><img ng-src = "assets/css/imgs/share.png"></button>
+							</a>
+						</div>
+					  <h4>{{config[$index].Title2}}</h4>
+					</div>
+				<div class="panel-body">
+				    <p ng-bind-html="strReplace(config[$index].Description,config[$index],$index)"></p>
+					<p ng-bind-html="config[$index].text"></p>
+					<div class="alert alert-info" ng-hide="hidden[$index]" ng-if="help[$index]">
+						<p ng-bind-html="strReplace(config[$index].helpText,config[$index],$index)"></p>
+					</div>
+					<div class="alert alert-danger" ng-if="!siteId[formNames[$index]]&&showWarning&&mode!='javascript'&&!config[$index].text">
+						<p>Boutique non répertoriée</p>
+					</div>
+					  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="siteId[formNames[$index]]||mode=='javascript'">
+						<div class ="form-group">
+							<label for ="vads_trans_date" ng-hide="hidden[parentindex]">vads_trans_date</label> 
+							<input type="text" ng-if="(!config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
+								   id="vads_trans_date" value={{date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+							<input type="text" ng-if="(config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
+								   id="vads_trans_date" value={{config[parentindex].vads_trans_date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+							<input type="hidden" class = "form-control" name="shop" 
+								   id="shop" value={{config[parentindex].shop}}>
+						</div>	
+
+						<div class ="form-group"> 
+							<label for ="vads_trans_id"  ng-hide="hidden[parentindex]">vads_trans_id</label>
+							<input type="text" class="form-control" name="vads_trans_id" id="vads_trans_id" value={{trans}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+						</div> 
+
+						<div class ="form-group" ng-if="mode!='javascript'"> 
+							<label for ="vads_site_id"  ng-hide="hidden[parentindex]">vads_site_id</label>
+							<input type="text" class="form-control" name="vads_site_id" id="vads_site_id"
+								   value={{siteId[formNames[$index]]}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+						</div>
+						<div class ="form-group" ng-if="mode=='javascript'"> 
+							<label for ="vads_site_id"  ng-hide="hidden[parentindex]">vads_site_id</label>
+							<input type="text" class="form-control" name="vads_site_id" id="vads_site_id"
+								   value="****" ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+						</div>
+
+						<div class ="form-group" ng-repeat="item in fields[parentindex] track by $index" 
+							 ng-if = "(!hidden[parentindex]) || (!(config[parentindex]['input'])) && (!(config[parentindex]['readonly']))||
+									  ((config[parentindex]['input'].indexOf(item.name) == -1)&&(config[parentindex]['readonly'].indexOf(item.name) == -1))||
+									  ((config[parentindex]['readonly'].indexOf(item.name) == -1)&&(!(config[parentindex]['input'])))||
+									  ((config[parentindex]['input'].indexOf(item.name) == -1)&&(!(config[parentindex]['readonly'])))" 
+									  ng-hide = "(item.name == 'vads_payment_cards' && isCards[parentindex])" >
+							<label for ={{item.name}} ng-hide="hidden[parentindex]">{{item.name}}</label>
+							<div  ng-if="(isRegex.indexOf(item.name) == -1|| hidden[parentindex] || !help[parentindex]|| readonly[parentindex])">
+								<input type={{type}} class = "form-control" name={{item.name}} id={{item.name}} ng-model="config[parentindex][item.name]" value={{config[parentindex][item.name]}} 
+									   ng-readonly = "readonly[parentindex]" ng-hide="hidden[parentindex]">
+							</div>
+							<select  class="form-control" id = {{item.name}} name={{item.name}} ng-model="model[parentindex][$index]" 
+								 ng-options ="truc.value for truc in regex | filter : {name : item.name} track by truc.value" 
+								 ng-if="isRegex.indexOf(item.name) != -1 && !readonly[parentindex] && !hidden[parentindex] && help[parentindex]">
+							</select>
+						</div>
+						<div class ="form-group" ng-repeat="item in config[parentindex]['readonly'] track by $index" ng-if = "item != 'vads_payment_cards' || !isCards[parentindex]" ng-hide="!hidden[parentindex]">
+							<label for ={{item}}>{{item}}</label>
+							<input type={{type}} class = "form-control" name={{item}} id={{item}} value={{config[parentindex][item]}} ng-readonly = "true"
+							   ng-if="hidden[parentindex] && item!='vads_amount' && item!='vads_sub_amount' && item!='vads_sub_init_amount' && item!='vads_effective_amount'">
+							<div class="form-group row">
+								<div class="col-md-6">
+									<input type={{type}} class = "form-control" name={{item}} id={{item}} value={{config[parentindex][item]}} 
+											ng-if="isRegex.indexOf(item) == -1 && hidden[parentindex] && (item=='vads_amount'||item=='vads_sub_amount'||item=='vads_sub_init_amount'||item=='vads_effective_amount')"
+										   readonly>
+								</div>
+								<div class="col-md-6">
+									<div class="input-group" ng-if="item=='vads_amount'||item=='vads_sub_amount'||item=='vads_sub_init_amount'||item=='vads_effective_amount'" ng-hide="!hidden[parentindex]">
+										  <span class="input-group-addon">{{currencyTab[config[parentindex][strCurrency(item)]].symbol}}</span>
+										  <input type="text" class="form-control" ng-init="strAmount(config[parentindex][item],parentindex,item)" id={{vadsEscape(item)}} 
+												 value={{amount[parentindex][item]}} readonly>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class ="form-group" ng-repeat="item in config[parentindex]['input'] track by $index" ng-if="item != 'vads_payment_cards' || !isCards[parentindex]"
+							ng-hide="!hidden[parentindex]">
+							<label for ={{item}}>{{item}} </label>
+							<input type={{type}} class ="form-control" name={{item}} id={{item}} ng-model="config[parentindex][item]" value={{config[parentindex][item]}}  
+							   ng-if="isRegex.indexOf(item) == -1 && hidden[parentindex] && item!='vads_amount' && item!='vads_sub_amount' 
+									  && item!='vads_sub_init_amount' && item!='vads_effective_amount'"
+							   ng-change="strAmount(config[parentindex]['vads_amount'],parentindex,'vads_amount');strAmount(config[parentindex]['vads_sub_amount'],parentindex,'vads_sub_amount');
+										  strAmount(config[parentindex]['vads_sub_init_amount'],parentindex,'vads_sub_init_amount');themeConfigUpdate(parentindex);">
+							<div class="form-group row">
+								<div class="col-md-6">
+									<input type={{type}} class = "form-control" name={{item}} id={{item}} value={{config[parentindex][item]}} 
+											ng-if="isRegex.indexOf(item) == -1 && hidden[parentindex] && (item=='vads_amount'||item=='vads_sub_amount'||item=='vads_sub_init_amount'||item=='vads_effective_amount')"
+										   ng-model="config[parentindex][item]" ng-change="strAmount(config[parentindex][item],parentindex,item);themeConfigUpdate(parentindex);">
+								</div>
+								<div class="col-md-6">
+									<div class="input-group" ng-if="item=='vads_amount'||item=='vads_sub_amount'||item=='vads_sub_init_amount'||item=='vads_effective_amount'" ng-hide="!hidden[parentindex]">
+										  <span class="input-group-addon">{{currencyTab[config[parentindex][strCurrency(item)]].symbol}}</span>
+										  <input type="text" class="form-control" ng-init="strAmount(config[parentindex][item],parentindex,item)" id={{vadsEscape(item)}} 
+												 value={{amount[parentindex][item]}}  ng-model="amount[parentindex][item]" readonly>
+									</div>
+								</div>
+							</div>
+							<select  class="form-control" id = {{item}} name={{item}} ng-model="model[parentindex][findWithAttr(fields[parentindex],'name',item)]" 
+								 ng-options ="truc.value for truc in regex | filter : {name : item} track by truc.value" 
+								 ng-if="isRegex.indexOf(item) != -1 && hidden[parentindex]"></select>
+						</div>
+						 <div class ="form-group" ng-show="((!hidden[parentindex] && help[parentindex]) ||(config[parentindex]['readonly'].indexOf('vads_payment_cards') != -1))&&isCards[parentindex]"
+							  ng-if="isCards[parentindex]" id="cards"> 
+							<label for ="vads_payment_cards">vads_payment_cards</label>
+							<div class="cards">
+								<input type="text" class="form-control" name="vads_payment_cards" id="vads_payment_cards"
+									   value="" placeholder="Survolez une icone pour afficher la valeur" readonly>
+							</div>
+						</div> 
+						<div class="form-group row" ng-if="isCards[parentindex]">
+							<div class="col-md-4">
+								<label>{{config[parentindex]['ButtonText']}}</label>
+							</div>
+							<div class="col-md-4" ng-if="debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript'">
+								<input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug
+							</div>
+							
+						</div>
+						<div class = "btn-group inline" ng-repeat ="icon in config[$index]['Button']" ng-if="isCards[parentindex]">
+							<button type="button" class="btn btn-default " ng-mouseenter="cardsHoover(formNames[parentindex],icon,parentindex)" 
+									ng-mouseleave="cardsHooverLeave(formNames[parentindex],icon,parentindex)"
+									ng-click="cards(formNames[parentindex],icon,parentindex);showIframe(parentindex);formShow[parentindex] = false;">
+								<img ng-src="{{iconStrReplace(icon)}}">
+							</button>
+						</div>
+						<input type="hidden" name="vads_url_return" id="vads_url_return" value="" ng-if ="!config[parentindex]['vads_url_return']">
+						<input type="hidden" name="signature" id="signature" value={{key}}>
+						<div class="checkbox" ng-if="!isCards[parentindex]&&(debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript')">
+							<label><input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug</label>
+						</div>
+						<button type="button" class="btn btn-success" ng-click ="request(readData,$index);showIframe(parentindex);formShow[parentindex] = false;" 
+								ng-show="!isCards[parentindex]">{{config[$index].ButtonText}}</button>
+					  </form>
+							<iframe class="iframe" name={{iframeNames[parentindex]}} id={{iframeNames[parentindex]}}  
+									ng-src='{{location}}' ng-show="iframeShow[parentindex]&&iframe[parentindex]" width="100%" height="355px"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			
+
