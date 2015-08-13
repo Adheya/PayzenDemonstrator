@@ -40,7 +40,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en"  ng-app="myApp">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,38 +48,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="js/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script type="text/javascript" src="js/formdebug.js"></script>
-		<script type="text/javascript" src="config/form.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script type="text/javascript" src="js/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="js/angular-route.min.js"></script>
+		<script type="text/javascript" src="js/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="config/form.js"></script>
+		<script type="text/javascript" src="config/demo.form.js"></script>
+		<script src="js/ui-bootstrap-tpls-0.13.0.min.js"></script>
+		<script src="js/FormconfigCtrl.js"></script>
 		<link rel="stylesheet" href="assets/css/styles.css">
 	</head>
-	<body ng-controller="ctrl">
-	<div class="container">
-		
-	<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">html/text</button>
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="return();">Return</button>
-		  </div>
-		</nav>
-
-	
-<pre>
-<code class="language-html" data-lang="html" ng-if="html">
-&lt;form&gt;
-<div ng-repeat="item in fields" ng-if="item.name!='shop'&&item.name!='vads_url_return'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div>&lt;/form&gt;
-</code>
-<div  ng-repeat="item in fields" ng-if="!html&&item.name!='shop'&&item.name!='vads_url_return'">{{item.name}}  {{item.value}}</div>
-</pre>
-			<form id="form1" name="form1">
-				<div class = "form-group" ng-repeat="item in fields track by $index" ng-if="item.name!='shop'">
-					<input type="hidden" name={{item.name}} id={{item.name}} value={{item.value}}>
-				</div>
-				<button type="button" class="btn btn-success" ng-click ="request(readData)" ng-if="mode!='javascript'">Submit</button>
-			</form>
-
-	</div>
-		
+	<body>
+		<div ng-view></div>	
   	</body>
 </html>
+

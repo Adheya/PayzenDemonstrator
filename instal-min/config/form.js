@@ -1,4 +1,4 @@
-var menu = ["Paiement simple", "Les paiements", "Les Abonnements", "Sepa", "Presse"];
+var menu = ["Démo"];
 
 var mode = "javascript";
 
