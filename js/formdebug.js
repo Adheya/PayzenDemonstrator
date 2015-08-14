@@ -39,7 +39,22 @@
 */ 
 
 var myApp = angular.module('myApp', []);
-myApp.controller('ctrl', function ($scope) {
+myApp.controller('ctrl', function ($scope,$http) {
+	$http.get('database/dico.json').
+    success(function(data, status, headers, config) {
+      $scope.database = data;
+    }).
+    error(function(data, status, headers, config) {
+      // log error
+    });
+	
+	$scope.getDescription = function (field){
+		for (i=0;i<$scope.database.length;i++){
+			if ($scope.database[i].Field == field){
+				return $scope.database[i].Description;
+			}
+		}
+	}
 	
 	function utf8_encode(argString) {
 	  //  discuss at: http://phpjs.org/functions/utf8_encode/
@@ -114,6 +129,7 @@ myApp.controller('ctrl', function ($scope) {
 	var shop ;
 	$scope.html = (debug=='html');
 	$scope.mode = mode;
+	$scope.toggle = [];
 	(window.onpopstate = function () {
 		var match,
 			pl     = /\+/g,  // Regex for replacing addition symbol with a space
@@ -125,6 +141,7 @@ myApp.controller('ctrl', function ($scope) {
 		var i = 0;
 		while (match = search.exec(query)){
 		   urlParams[i]=[];
+		   $scope.toggle[i] = false;
 		   urlParams[i]["name"]=(decode(match[1]));
 		   urlParams[i]["value"]=(decode(match[2]));
 		   if (decode(match[1])=='shop') shop = decode(match[2]);
@@ -207,8 +224,7 @@ myApp.controller('ctrl', function ($scope) {
 		}
 	}
 	
-	$scope.return = function(){
-		history.go(-1);
-	}
+	
+	
 	
 });

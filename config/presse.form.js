@@ -4,7 +4,7 @@ var configs =[
 {
     "shop":"DemoSEPA",
     "anchor":"aboPresseSDDsubscribe",
-    "Title1": "Presse",
+    "Title1": "presse",
     "Title2": "Abonnement mensuel Sepa",
     "Description":"Exemple d'abonnement à une revue mensuelle ne paraissant pas le mois d'août.<br>Payement de $vads_sub_amount$  par prélèvement Sepa onze mois par ans, le prélèvement est effectué le mercredi de la semaine d'abonnement. ",
 
@@ -38,7 +38,7 @@ var configs =[
 {
     "shop":"DemoSEPA",
     "anchor":"aboPresseCBsubscribe",
-    "Title1": "Presse",
+    "Title1": "presse",
     "Title2": "Abonnement bimestriel CB",
     "Description":"Exemple d'abonnement à une revue bimestrielle de $vads_sub_amount$<br>Payement par cartes bancaire le dernier jour des mois pairs, pour une durée de deux ans, l'abonnement commence la mois suivant.",
 
@@ -71,7 +71,7 @@ var configs =[
 {
     "shop":"DemoSEPA",
     "anchor":"aboPresseCBSDDpaySubscribe",
-    "Title1": "Presse",
+    "Title1": "presse",
     "Title2": "Abonnement mensuel",
     "Description":"Exemple d'abonnement à un site d'actualité en ligne par prélèvement Sepa ou CB.<br><br>Premier mois à $vads_amount$ puis abonnement mensuel de $vads_sub_amount$ prélevé le jour de souscription.",
 
@@ -106,7 +106,7 @@ var configs =[
 {
     "shop":"DemoMax",
     "anchor":"DemoSSD",
-    "Title1": "Presse2",
+    "Title1": "presse2",
     "Title2": "Abonnement en prélèvement ",
     "Description":"SSD. ",
 

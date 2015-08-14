@@ -44,7 +44,7 @@ var myApp = angular.module('myApp', ['ngRoute','ngSanitize','ui.bootstrap']).con
 
 
 myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
-	$http.get('Database/dico.json').
+	$http.get('database/dico.json').
     success(function(data, status, headers, config) {
       $scope.database = data;
 		$scope.regtab();
@@ -66,6 +66,14 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	$scope.currencyTab = currencyTab;
 	$scope.debug = debug;
 	$scope.mode = mode;
+	$scope.menu = menu;
+	$scope.returnMode = "";
+	if (urlReturn=="detail"){
+		$scope.returnMode = "GET"; 
+	}
+	$scope.menuSplit = function (text,i){
+		return text.split('|')[i];
+	}
 	
 	for (i=0;i<$scope.config.length;i++){
 		if (Object.size($scope.config[i]) == 1){
@@ -83,13 +91,15 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.config[i]["type"] = "hidden";
 			$scope.config[i]["Button"] = "Payer";
 			$scope.config[i]["ButtonText"] = "Payer";
-			$scope.config[i]["Title1"] = menu[0];
+			$scope.config[i]["Title1"] = $scope.menuSplit(menu[0],0);
 			$scope.config[i]["Title2"] = "Paiement simple";
 		}
 	}
 
 
-	$scope.menu = menu;
+	
+	
+	
 
 	$scope.urlName = $routeParams.name;
 	$scope.urlType = $routeParams.type;
@@ -428,9 +438,13 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		$scope.$apply(function(){$scope.siteId[formid]=json.site_id;});
 		setTimeout(function(){$scope.$apply(function(){$scope.showWarning=true;})},1000);
 		//$scope.iframeUrl[formid] = json.url_forms; 
-		if(!document.forms[formid].elements["vads_url_return"].value){
+		if (urlReturn=="detail"){
+			document.forms[formid].elements["vads_url_return"].value = "http://demo.pzen.eu/d/returndebug.html";
+		}
+		else if(!document.forms[formid].elements["vads_url_return"].value){
 			document.forms[formid].elements["vads_url_return"].value = document.location.href;
 		}
+		
 		
 	}
 	
@@ -495,11 +509,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	  	  
 });
 
-
+var urlreturn = '/'+menu[0].split('|')[0];
 
 function routeProvider ($routeProvider){
 	$routeProvider
 		.when('/:type/:name',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
 		.when('/:type',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
-		.otherwise({redirectTo : '/Démo'});
+		.otherwise({redirectTo : urlreturn});
 };

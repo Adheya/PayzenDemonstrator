@@ -4,7 +4,7 @@ var configs =[
 {
     "shop":"DemoMax",
     "anchor":"demoAmount",
-    "Title1": "Les Abonnements",
+    "Title1": "abonnements",
     "Title2": "Abonnement avec offre promotionnelle",
     "Description":"Nous vous proposons une offre découverte, pour $vads_amount$ vous pouvez tester notre service 14 jours. S'il vous convient vous pourrez alors continuer pour $vads_sub_init_amount$ les [vads_sub_init_amount_number] premiers mois, puis pour $vads_sub_amount$ <br>Vous pourrez interrompre votre abonnement à tout moment. ",
 
@@ -46,7 +46,7 @@ var configs =[
 {
     "shop":"DemoMax",
     "anchor":"exemple5",
-    "Title1": "Les Abonnements",
+    "Title1": "abonnements",
     "Title2": "Abonnement avec offre promotionnelle",
     "Description":"Nous vous proposons une offre découverte, pour 7,90 € vous pouvez tester notre service 14 jours. S'il vous convient vous pourrez alors continuer pour 24,90 €Vous pourrez interrompre votre abonnement à tout moment. ",
 
@@ -83,47 +83,7 @@ var configs =[
     "ButtonText":"Je paye en 3 fois"
 },
 
-{
-    "shop":"DemoMax",
-    "anchor":"exemple6",
-    "Title1": "Les Abonnements",
-    "Title2": "Abonnement avec offre promotionnelle",
-    "Description":"Nous vous proposons une offre découverte, pour 7,90 € vous pouvez tester notre service 14 jours. S'il vous convient vous pourrez alors continuer pour 24,90 €Vous pourrez interrompre votre abonnement à tout moment. ",
 
-    "help":"yes",
-    "type":"hidden",
-    "helpText":"Description détaillée de l'exemple",
-
-    //vads_site_id : define via the shop parameter
-    "vads_ctx_mode":"TEST",
-    //vads_trans_id : define via random function
-    //vads_trans_date  define automatically
-    "vads_amount":"700",
-    "vads_currency":"978",
-    "vads_action_mode":"INTERACTIVE",
-    "vads_page_action":"REGISTER_PAY_SUBSCRIBE",
-    "vads_version":"V2",
-    "vads_payment_config":"SINGLE",
-    "vads_capture_delay":"0",
-
-    "vads_sub_amount":"1400",
-    "vads_sub_currency":"978",
-    "vads_sub_desc":"RRULE:FREQ=MONTHLY;BYMONTHDAY=" + utc.getDate().toString(),
-    "vads_sub_effect_date":(moment().add(1,'months').format('YYYYMMDD')),
-    "vads_sub_init_amount_number":"2",
-    "vads_sub_init_amount":"2990",
-
-
-    "vads_payment_cards":"SDD",
-    "vads_order_info":"Abonnement souscrit le " + utc.toLocaleDateString(),
-    "vads_cust_first_name":"Roger",
-    "vads_cust_last_name":"Parslow",
-    "vads_cust_phone":"0707070707",
-    "vads_cust_email":"demo@pzen.eu",
-    "vads_validation_mode":"1",
-    "vads_theme_config":"MERCHANT_MESSAGE=Offre promotionnelle, 7.90€ pour un essai de 14 jours, puis 3 mois à 14.90, les mois suivants à 24.90 € sans engagement de durée;",
-    "ButtonText":"Je paye en 3 fois"
-},
 
 
 

@@ -1,6 +1,6 @@
-var menu = ["Paiement simple", "Les paiements", "Les Abonnements", "Sepa", "Presse"];
+var menu = ["demo|Démo","paiementsimple|Paiement simple", "paiements|Les paiements", "abonnements|Les Abonnements", "sepa|Sepa", "presse|Presse"];
 
-var mode = "javascript";
+var mode = "php";
 
 var debug = "html";
 
@@ -12,3 +12,7 @@ var currencyTab = {"978" : {symbol : "€", mult : "100"},
 				   "392" : {symbol : "¥", mult : "1"},
 				   "124" : {symbol : "CAD", mult : "100"},
 				  };
+
+//urlreturn : self ou detail
+
+var urlReturn = "detail";

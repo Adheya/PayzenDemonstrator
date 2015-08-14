@@ -51,11 +51,11 @@
 						 <span class="icon-bar"></span>
 						 <span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href='#/{{menu[0]}}'>{{menu[0]}}</a>
+					<a class="navbar-brand" href='#/{{menuSplit(menu[0],0)}}'>{{menuSplit(menu[0],1)}}</a>
 				</div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li ng-repeat = "nav in menu track by $index" ng-if="$index>0"><a href='#/{{nav}}'>{{nav}}<span class="sr-only">(current)</span></a></li>
+						<li ng-repeat = "nav in menu track by $index" ng-if="$index>0"><a href='#/{{menuSplit(nav,0)}}'>{{menuSplit(nav,1)}}<span class="sr-only">(current)</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -195,6 +195,7 @@
 							</button>
 						</div>
 						<input type="hidden" name="vads_url_return" id="vads_url_return" value="" ng-if ="!config[parentindex]['vads_url_return']">
+						<input type="hidden" name="vads_return_mode" id="vads_return_mode" value={{returnMode}}>
 						<input type="hidden" name="signature" id="signature" value={{key}}>
 						<div class="checkbox" ng-if="!isCards[parentindex]&&(debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript')">
 							<label><input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug</label>
