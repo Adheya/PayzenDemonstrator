@@ -62,27 +62,28 @@
 			
 		</nav>
 		<div class="container">
-			<div class={{colSize}} ng-init = "parentindex = $index;requestSiteId(readDataSiteId,$index);" ng-repeat = "conf in config track by $index">
-				<div class="panel panel-default">
-					<div class="panel-heading" ng-if="!config[$index].text">
+			<div class={{colSize[$index]}} ng-init = "parentindex = $index;requestSiteId(readDataSiteId,$index);" ng-repeat = "conf in config track by $index">
+				<div class={{panelClass[$index]}}>
+					<div class="panel-heading">
 					  <div class="pull-right"><button type="button" class="btn btn-default " ng-click ="hide($index)" ng-if="help[$index]">Help</button></div>
 						<div class="pull-right">
-							<a href="#/{{conf['Title1']}}/{{conf['anchor']}}">
-								<button type="button" class="btn btn-default "><img ng-src = "assets/css/imgs/share.png"></button>
+							<a href="#/{{conf['Menu']}}/{{conf['Anchor']}}">
+								<button type="button" class="btn btn-default " ng-if="!config[$index].Text"><img ng-src = "assets/css/imgs/share.png"></button>
 							</a>
 						</div>
-					  <h4>{{config[$index].Title2}}</h4>
+					  <h4>{{config[$index].Title}}</h4>
+					  <h4 ng-if="config[$index].Text">{{menuSplit(textReplace(config[$index].Text),0)}}</h4>
 					</div>
 				<div class="panel-body">
 				    <p ng-if="config[$index].Description" ng-bind-html="strReplace(config[$index].Description,config[$index],$index)"></p>
-					<p ng-bind-html="config[$index].text"></p>
+					<p ng-bind-html="menuSplit(textReplace(config[$index].Text),1)" ng-if="config[$index].Text"></p>
 					<div class="alert alert-info" ng-hide="hidden[$index]" ng-if="help[$index]">
-						<p ng-if="config[$index].helpText" ng-bind-html="strReplace(config[$index].helpText,config[$index],$index)"></p>
+						<p ng-if="config[$index].HelpText" ng-bind-html="strReplace(config[$index].HelpText,config[$index],$index)"></p>
 					</div>
-					<div class="alert alert-danger" ng-if="!siteId[formNames[$index]]&&showWarning&&mode!='javascript'&&!config[$index].text">
+					<div class="alert alert-danger" ng-if="!siteId[formNames[$index]]&&showWarning&&mode!='javascript'&&!config[$index].Text">
 						<p>Boutique non répertoriée</p>
 					</div>
-					  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="(siteId[formNames[$index]]||mode=='javascript')&&!config[$index].text">
+					  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="(siteId[formNames[$index]]||mode=='javascript')&&!config[$index].Text">
 						<div class ="form-group">
 							<label for ="vads_trans_date" ng-hide="hidden[parentindex]">vads_trans_date</label> 
 							<input type="text" ng-if="(!config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
@@ -90,7 +91,7 @@
 							<input type="text" ng-if="(config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
 								   id="vads_trans_date" value={{config[parentindex].vads_trans_date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 							<input type="hidden" class = "form-control" name="shop" 
-								   id="shop" value={{config[parentindex].shop}}>
+								   id="shop" value={{config[parentindex].Shop}}>
 						</div>	
 
 						<div class ="form-group"> 
@@ -110,10 +111,10 @@
 						</div>
 
 						<div class ="form-group" ng-repeat="item in fields[parentindex] track by $index" 
-							 ng-if = "(!hidden[parentindex]) || (!(config[parentindex]['input'])) && (!(config[parentindex]['readonly']))||
-									  ((config[parentindex]['input'].indexOf(item.name) == -1)&&(config[parentindex]['readonly'].indexOf(item.name) == -1))||
-									  ((config[parentindex]['readonly'].indexOf(item.name) == -1)&&(!(config[parentindex]['input'])))||
-									  ((config[parentindex]['input'].indexOf(item.name) == -1)&&(!(config[parentindex]['readonly'])))" 
+							 ng-if = "(!hidden[parentindex]) || (!(config[parentindex]['Input'])) && (!(config[parentindex]['Readonly']))||
+									  ((config[parentindex]['Input'].indexOf(item.name) == -1)&&(config[parentindex]['Readonly'].indexOf(item.name) == -1))||
+									  ((config[parentindex]['Readonly'].indexOf(item.name) == -1)&&(!(config[parentindex]['Input'])))||
+									  ((config[parentindex]['Input'].indexOf(item.name) == -1)&&(!(config[parentindex]['Readonly'])))" 
 									  ng-hide = "(item.name == 'vads_payment_cards' && isCards[parentindex])" >
 							<label for ={{item.name}} ng-hide="hidden[parentindex]">{{item.name}}</label>
 							<div  ng-if="(isRegex.indexOf(item.name) == -1|| hidden[parentindex] || !help[parentindex]|| readonly[parentindex])">
@@ -125,7 +126,7 @@
 								 ng-if="isRegex.indexOf(item.name) != -1 && !readonly[parentindex] && !hidden[parentindex] && help[parentindex]">
 							</select>
 						</div>
-						<div class ="form-group" ng-repeat="item in config[parentindex]['readonly'] track by $index" ng-if = "item != 'vads_payment_cards' || !isCards[parentindex]" ng-hide="!hidden[parentindex]">
+						<div class ="form-group" ng-repeat="item in config[parentindex]['Readonly'] track by $index" ng-if = "item != 'vads_payment_cards' || !isCards[parentindex]" ng-hide="!hidden[parentindex]">
 							<label for ={{item}}>{{item}}</label>
 							<input type={{type}} class = "form-control" name={{item}} id={{item}} value={{config[parentindex][item]}} ng-readonly = "true"
 							   ng-if="hidden[parentindex] && item!='vads_amount' && item!='vads_sub_amount' && item!='vads_sub_init_amount' && item!='vads_effective_amount'">
@@ -144,7 +145,7 @@
 								</div>
 							</div>
 						</div>
-						<div class ="form-group" ng-repeat="item in config[parentindex]['input'] track by $index" ng-if="item != 'vads_payment_cards' || !isCards[parentindex]"
+						<div class ="form-group" ng-repeat="item in config[parentindex]['Input'] track by $index" ng-if="item != 'vads_payment_cards' || !isCards[parentindex]"
 							ng-hide="!hidden[parentindex]">
 							<label for ={{item}}>{{item}} </label>
 							<input type={{type}} class ="form-control" name={{item}} id={{item}} ng-model="config[parentindex][item]" value={{config[parentindex][item]}}  
@@ -170,7 +171,7 @@
 								 ng-options ="truc.value for truc in regex | filter : {name : item} track by truc.value" 
 								 ng-if="isRegex.indexOf(item) != -1 && hidden[parentindex]"></select>
 						</div>
-						 <div class ="form-group" ng-show="((!hidden[parentindex] && help[parentindex]) ||(config[parentindex]['readonly'].indexOf('vads_payment_cards') != -1))&&isCards[parentindex]"
+						 <div class ="form-group" ng-show="((!hidden[parentindex] && help[parentindex]) ||(config[parentindex]['Readonly'].indexOf('vads_payment_cards') != -1))&&isCards[parentindex]"
 							  ng-if="isCards[parentindex]" id="cards"> 
 							<label for ="vads_payment_cards">vads_payment_cards</label>
 							<div class="cards">
@@ -196,6 +197,8 @@
 						</div>
 						<input type="hidden" name="vads_url_return" id="vads_url_return" value="" ng-if ="!config[parentindex]['vads_url_return']">
 						<input type="hidden" name="vads_return_mode" id="vads_return_mode" value={{returnMode}}>
+						<input type="hidden" name="vads_redirect_success_timeout" id="vads_redirect_success_timeout" value="5" ng-if="urlReturn=='detail'">
+						<input type="hidden" name="vads_redirect_error_timeout" id="vads_redirect_error_timeout" value="5" ng-if="urlReturn=='detail'">
 						<input type="hidden" name="signature" id="signature" value={{key}}>
 						<div class="checkbox" ng-if="!isCards[parentindex]&&(debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript')">
 							<label><input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug</label>

@@ -127,6 +127,7 @@ myApp.controller('ctrl', function ($scope,$http) {
 	
 	var urlParams = [];
 	var shop ;
+	var urlReturn = "" ;
 	$scope.html = (debug=='html');
 	$scope.mode = mode;
 	$scope.toggle = [];
@@ -145,10 +146,19 @@ myApp.controller('ctrl', function ($scope,$http) {
 		   urlParams[i]["name"]=(decode(match[1]));
 		   urlParams[i]["value"]=(decode(match[2]));
 		   if (decode(match[1])=='shop') shop = decode(match[2]);
+		   if (decode(match[1])=='return') urlReturn = decode(match[2]).replace("$","#");
 		   i++;
 		}
 	})();
 
+	$scope.return = function (){
+		document.location.href = urlReturn;
+	}
+	
+	$scope.prec = function(){
+		history.back();
+	}
+	
 	function compare(a,b) {
 	  if (a.name < b.name)
 		return -1;

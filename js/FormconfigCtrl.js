@@ -68,6 +68,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	$scope.mode = mode;
 	$scope.menu = menu;
 	$scope.returnMode = "";
+	$scope.urlReturn = urlReturn;
 	if (urlReturn=="detail"){
 		$scope.returnMode = "GET"; 
 	}
@@ -84,15 +85,15 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.config[i]["vads_page_action"] = "PAYMENT";
 			$scope.config[i]["vads_payment_config"] = "SINGLE";
 			$scope.config[i]["vads_version"] = "V2";
-			$scope.config[i]["anchor"] = "exemple" + $scope.config.length;
+			$scope.config[i]["Anchor"] = "exemple" + $scope.config.length;
 			$scope.config[i]["Description"] = "Le montant total de votre commande est de $vads_amount$ payable en une seule fois";
-			$scope.config[i]["helpText"] = "Description détaillée de l'exemple";
-			$scope.config[i]["help"] = "yes";
-			$scope.config[i]["type"] = "hidden";
+			$scope.config[i]["HelpText"] = "Description détaillée de l'exemple";
+			$scope.config[i]["Help"] = "yes";
+			$scope.config[i]["Type"] = "hidden";
 			$scope.config[i]["Button"] = "Payer";
 			$scope.config[i]["ButtonText"] = "Payer";
-			$scope.config[i]["Title1"] = $scope.menuSplit(menu[0],0);
-			$scope.config[i]["Title2"] = "Paiement simple";
+			$scope.config[i]["Menu"] = $scope.menuSplit(menu[0],0);
+			$scope.config[i]["Title"] = "Paiement simple";
 		}
 	}
 
@@ -109,7 +110,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		if ($scope.urlName) {
 			$scope.config = [];
 			for (i=0;i<config.length;i++){
-				if (config[i].anchor == $scope.urlName){
+				if (config[i].Anchor == $scope.urlName){
 					$scope.config.push(config[i]);
 				}
 			}
@@ -117,7 +118,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		else {
 			$scope.config = [];
 			for (i=0;i<config.length;i++){
-				if (config[i].Title1 == $scope.urlType){
+				if (config[i].Menu == $scope.urlType){
 					$scope.config.push(config[i]);
 				}
 			}
@@ -150,7 +151,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		return ret;
 	}
 	
-	$scope.colSize = "col-md-6";
+	$scope.textReplace = function (str){
+		return str.replace("{large}","").replace("{primary}","");
+	}
+	
+	$scope.colSize = [];
 
 	$scope.formShow = [];
 	
@@ -174,11 +179,13 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.isDebug = [];
 	
+	$scope.panelClass = [];
+	
 	var themeConfig = [];
 	
 	
 	
-	if ($scope.config.length == 1){$scope.colSize="col-md-10";}
+	
 
 	for (i=0;i<$scope.config.length;i++){
 		$scope.formShow[i] = true;
@@ -193,6 +200,19 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		
 		$scope.iframe[i] = false;
 		
+		$scope.colSize[i] = "col-md-6";
+		
+		$scope.panelClass[i] = "panel panel-default";
+		
+		if ($scope.config[i].Text){
+			if ($scope.config[i].Text.search("{large}")!=-1){
+				$scope.colSize[i] = "col-md-12";
+			}
+			if ($scope.config[i].Text.search("{primary}")!=-1){
+				$scope.panelClass[i] = "panel panel-primary";
+			}
+		}
+		
 		$scope.isDebug[i] = (mode=='javascript');
 		
 		$scope.amount[i]=[];
@@ -203,16 +223,16 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		
 		$scope.iframeNames[i] = "iframe" + i;
 
-		if ($scope.config[i].type == "hidden"){
+		if ($scope.config[i].Type == "hidden"){
 		$scope.hidden[i] = true;
 		$scope.readonly[i] = true;
 		}
 
-		if ($scope.config[i].help == "yes"){
+		if ($scope.config[i].Help == "yes"){
 			$scope.help[i] = true;
 		}
 
-		if ($scope.config[i].type == "readonly"){
+		if ($scope.config[i].Type == "readonly"){
 			$scope.readonly[i] = true;
 		}
 
@@ -228,6 +248,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.config[i].vads_theme_config = $scope.strReplace($scope.config[i].vads_theme_config,$scope.config[i],i);	
 		}
 	}
+	
+	if ($scope.config.length == 1){$scope.colSize=["col-md-10"];}
 
 
     $scope.showIframe = function(index){	
@@ -357,7 +379,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		};
 
 	var arg = encodeURIComponent(JSON.stringify($scope.compute($scope.formNames[index])));
-	var name = $scope.config[index].shop;
+	var name = $scope.config[index].Shop;
 	
 	if ($scope.isDebug[index]){
 			formDebug($scope.formNames[index],index);
@@ -379,7 +401,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			}
 		};
 
-		var name = $scope.config[index].shop;
+		var name = $scope.config[index].Shop;
 
 		xhr.open("GET", "signature.php?name=" + name, true);
 		xhr.send(null);
@@ -439,7 +461,15 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		setTimeout(function(){$scope.$apply(function(){$scope.showWarning=true;})},1000);
 		//$scope.iframeUrl[formid] = json.url_forms; 
 		if (urlReturn=="detail"){
-			document.forms[formid].elements["vads_url_return"].value = "http://demo.pzen.eu/d/returndebug.html";
+			var loc = document.location.href;
+			if (document.location.href.search("http://demo.pzen.eu/d/")!=-1){
+				var ret = "http://demo.pzen.eu/d/returndebug.html?return=" + loc.replace("#","$");
+				document.forms[formid].elements["vads_url_return"].value = ret;
+			}
+			else {
+				var ret = "http://demo.pzen.eu/returndebug.html?return=" + loc;
+				document.forms[formid].elements["vads_url_return"].value = ret;
+			}
 		}
 		else if(!document.forms[formid].elements["vads_url_return"].value){
 			document.forms[formid].elements["vads_url_return"].value = document.location.href;

@@ -2,16 +2,15 @@ var configs =[
 
 // Abonnement mensuel Sepa 
 {
-    "shop":"DemoSEPA",
-    "anchor":"aboPresseSDDsubscribe",
-    "Title1": "presse",
-    "Title2": "Abonnement mensuel Sepa",
-    "Description":"Exemple d'abonnement à une revue mensuelle ne paraissant pas le mois d'août.<br>Payement de $vads_sub_amount$  par prélèvement Sepa onze mois par ans, le prélèvement est effectué le mercredi de la semaine d'abonnement. ",
-
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
-    "helpText":"Dans cet exemple on peut voir qu'il n'y a pas de paramètre de paiement <em>vads_amount</em><br>L'abonnement est décrit par les paramètres <em>vads_sub_amount</em> et <em>vads_sub_currency</em><br>Dans la règle de récurence <b>[vads_sub_desc]</b> le <b>'xWE'</b> de <b>BYMONTHDAY</b> permet d'indiquer que le paiement sera fait le <b>Xième</b> mercredi du mois, <b>BYMONTH</b> décrit les mois où l'abonnement s'appliquera.<br>La date d'effet <em>vads_sub_effect_date</em> doit être au plus proche de la prochaine échéance, dans notre cas elle est positionné à la fin du mois actuel, ce qui fonctionne aussi.",
+    "Shop":"DemoSEPA",
+    "Anchor":"aboPresseSDDsubscribe",
+    "Menu": "presse",
+    "Title": "Abonnement mensuel Sepa",
+    "Description":"Exemple d'abonnement à une revue mensuelle ne paraissant pas le mois d'août.<br>Payement de $vads_sub_amount$  par prélèvement Sepa onze mois par ans, le prélèvement est effectué le mercredi de la semaine d'abonnement ",
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
+    "HelpText":"Dans cet exemple on peut voir qu'il n'y a pas de paramètre de paiement <em>vads_amount</em><br>L'abonnement est décrit par les paramètres <em>vads_sub_amount</em> et <em>vads_sub_currency</em><br>Dans la règle de récurence <b>[vads_sub_desc]</b> le <b>'xWE'</b> de <b>BYMONTHDAY</b> permet d'indiquer que le paiement sera fait le <b>Xième</b> mercredi du mois, <b>BYMONTH</b> décrit les mois où l'abonnement s'appliquera.<br>La date d'effet <em>vads_sub_effect_date</em> doit être au plus proche de la prochaine échéance, dans notre cas elle est positionné à la fin du mois actuel, ce qui fonctionne aussi.",
 
     "vads_ctx_mode":"TEST",
     "vads_action_mode":"INTERACTIVE",
@@ -36,15 +35,15 @@ var configs =[
 
 // Abonnement bimestriel CB
 {
-    "shop":"DemoSEPA",
-    "anchor":"aboPresseCBsubscribe",
-    "Title1": "presse",
-    "Title2": "Abonnement bimestriel CB",
+    "Shop":"DemoSEPA",
+    "Anchor":"aboPresseCBsubscribe",
+    "Menu": "presse",
+    "Title": "Abonnement bimestriel CB",
     "Description":"Exemple d'abonnement à une revue bimestrielle de $vads_sub_amount$<br>Payement par cartes bancaire le dernier jour des mois pairs, pour une durée de deux ans, l'abonnement commence la mois suivant.",
 
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
 
     "vads_ctx_mode":"TEST",
     "vads_action_mode":"INTERACTIVE",
@@ -69,15 +68,15 @@ var configs =[
 
 // Abonnement mensuel Sepa et CB
 {
-    "shop":"DemoSEPA",
-    "anchor":"aboPresseCBSDDpaySubscribe",
-    "Title1": "presse",
-    "Title2": "Abonnement mensuel",
+    "Shop":"DemoSEPA",
+    "Anchor":"aboPresseCBSDDpaySubscribe",
+    "Menu": "presse",
+    "Title": "Abonnement mensuel",
     "Description":"Exemple d'abonnement à un site d'actualité en ligne par prélèvement Sepa ou CB.<br><br>Premier mois à $vads_amount$ puis abonnement mensuel de $vads_sub_amount$ prélevé le jour de souscription.",
 
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
 
     "vads_ctx_mode":"TEST",
     "vads_action_mode":"INTERACTIVE",
@@ -104,16 +103,16 @@ var configs =[
 
 // void
 {
-    "shop":"DemoMax",
-    "anchor":"DemoSSD",
-    "Title1": "presse2",
-    "Title2": "Abonnement en prélèvement ",
+    "Shop":"DemoMax",
+    "Anchor":"DemoSSD",
+    "Menu": "presse2",
+    "Title": "Abonnement en prélèvement ",
     "Description":"SSD. ",
 
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_action_mode","vads_amount","vads_payment_config","vads_payment_cards","vads_currency","vads_capture_delay","vads_sub_currency","vads_sub_amount","vads_sub_effect_date","vads_sub_desc","vads_sub_init_amount_number","vads_sub_init_amount"],
-    "helpText":"Description détaillée de l'exemple",
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_action_mode","vads_amount","vads_payment_config","vads_payment_cards","vads_currency","vads_capture_delay","vads_sub_currency","vads_sub_amount","vads_sub_effect_date","vads_sub_desc","vads_sub_init_amount_number","vads_sub_init_amount"],
+    "HelpText":"Description détaillée de l'exemple",
 
     //vads_site_id : define via the shop parameter
     "vads_ctx_mode":"TEST",

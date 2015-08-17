@@ -1,16 +1,16 @@
 var configs =[
 
 {
-    "shop":"DemoGO",
-    "anchor":"exemple2",
-    "Title1": "paiements",
-    "Title2": "Paiement en 3 fois sans frais",
+    "Shop":"DemoGO",
+    "Anchor":"exemple2",
+    "Menu": "paiements",
+    "Title": "Paiement en 3 fois sans frais",
     "Description":"Nous vous proposons un paiement de votre commande en 3 fois sans frais. Une premier paiement de 100 € puis deux paiements de 75 € à 25 jours. Soit un paiement total de 250 €.",
     "helpText":"Description détaillée de l'exemple",
 
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_amount","vads_payment_config"],
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_amount","vads_payment_config"],
     "input":["vads_payment_cards"],
 
     //vads_site_id : define via the shop parameter
@@ -35,15 +35,15 @@ var configs =[
 },
 
 {
-    "shop":"DemoMax",
-    "anchor":"exemple3",
-    "Title1": "paiements",
-    "Title2": "Reservation Villa (pré-paiement en N fois)",
+    "Shop":"DemoMax",
+    "Anchor":"exemple3",
+    "Menu": "paiements",
+    "Title": "Reservation Villa (pré-paiement en N fois)",
     "Description":"Nous vous remercions de votre reservation dans notre gite à partir du " + (moment().locale('fr').add(4,'months').format('dddd Do MMMM YYYY')) + ". Le montant total de votre location sera de 990 €. Dont 400 € payable ce jour, 300 € un mois avant le début de ma location et le solde de 290 € 7 jours avant l'entrée dans les lieux.",
 
-    "help":"yes",
-    "type":"hidden",
-    "readonly":["vads_amount","vads_payment_config","vads_payment_cards"],
+    "Help":"yes",
+    "Type":"hidden",
+    "Readonly":["vads_amount","vads_payment_config","vads_payment_cards"],
     //"input":["vads_payment_cards"],
 
     //vads_site_id : define via the shop parameter

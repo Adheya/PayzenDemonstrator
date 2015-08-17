@@ -60,7 +60,7 @@
 	<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 			 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">html/text</button>
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="return();">Return</button>
+			 <button type="button" class="btn btn-default navbar-btn" ng-click="prec();">Return</button>
 		  </div>
 		</nav>
 
@@ -68,9 +68,9 @@
 <pre>
 <code class="language-html" data-lang="html" ng-if="html">
 &lt;form&gt;
-<div ng-repeat="item in fields" ng-if="item.name!='shop'&&item.name!='vads_url_return'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div>&lt;/form&gt;
+<div ng-repeat="item in fields" ng-if="item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div>&lt;/form&gt;
 </code>
-<div  ng-repeat="item in fields" ng-if="!html&&item.name!='shop'&&item.name!='vads_url_return'">{{item.name}}  {{item.value}}</div>
+<div  ng-repeat="item in fields" ng-if="!html&&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'">{{item.name}}  {{item.value}}</div>
 </pre>
 			<form id="form1" name="form1">
 				<div class = "form-group" ng-repeat="item in fields track by $index" ng-if="item.name!='shop'">

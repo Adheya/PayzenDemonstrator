@@ -2,17 +2,17 @@
 var configs =[
 
 {
-    "shop":"DemoMax",
-    "anchor":"demoAmount",
-    "Title1": "abonnements",
-    "Title2": "Abonnement avec offre promotionnelle",
+    "Shop":"DemoMax",
+    "Anchor":"demoAmount",
+    "Menu": "abonnements",
+    "Title": "Abonnement avec offre promotionnelle",
     "Description":"Nous vous proposons une offre découverte, pour $vads_amount$ vous pouvez tester notre service 14 jours. S'il vous convient vous pourrez alors continuer pour $vads_sub_init_amount$ les [vads_sub_init_amount_number] premiers mois, puis pour $vads_sub_amount$ <br>Vous pourrez interrompre votre abonnement à tout moment. ",
 
-    "help":"yes",
-    "type":"hidden",
-    "helpText":"Description détaillée de l'exemple",
-    "readonly":["vads_page_action"],
-    "input":["vads_currency","vads_amount","vads_sub_effect_date","vads_sub_currency","vads_sub_init_amount","vads_sub_init_amount_number","vads_sub_amount","vads_cust_phone"],
+    "Help":"yes",
+    "Type":"hidden",
+    "HelpText":"Description détaillée de l'exemple",
+    "Readonly":["vads_page_action"],
+    "Input":["vads_currency","vads_amount","vads_sub_effect_date","vads_sub_currency","vads_sub_init_amount","vads_sub_init_amount_number","vads_sub_amount","vads_cust_phone"],
 
     //vads_site_id : define via the shop parameter
     "vads_ctx_mode":"TEST",
@@ -44,16 +44,15 @@ var configs =[
     "ButtonText":"Je paye en 3 fois"
 },
 {
-    "shop":"DemoMax",
-    "anchor":"exemple5",
-    "Title1": "abonnements",
-    "Title2": "Abonnement avec offre promotionnelle",
+    "Shop":"DemoMax",
+    "Anchor":"exemple5",
+    "Menu": "abonnements",
+    "Title": "Abonnement avec offre promotionnelle",
     "Description":"Nous vous proposons une offre découverte, pour 7,90 € vous pouvez tester notre service 14 jours. S'il vous convient vous pourrez alors continuer pour 24,90 €Vous pourrez interrompre votre abonnement à tout moment. ",
 
-    "help":"yes",
-    "type":"hidden",
-    "helpText":"Description détaillée de l'exemple",
-
+    "Help":"yes",
+    "Type":"hidden",
+    "HelpText":"Description détaillée de l'exemple",
     //vads_site_id : define via the shop parameter
     "vads_ctx_mode":"TEST",
     //vads_trans_id : define via random function
