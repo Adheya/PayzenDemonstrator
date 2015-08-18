@@ -85,7 +85,11 @@
 					</div>
 					  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="(siteId[formNames[$index]]||mode=='javascript')&&!config[$index].Text">
 						<div class ="form-group">
-							<label for ="vads_trans_date" ng-hide="hidden[parentindex]">vads_trans_date</label> 
+							<label for ="vads_trans_date" ng-hide="hidden[parentindex]" ng-init="toggleSecial[parentindex][0]=false">vads_trans_date
+								<span class="glyphicon glyphicon-question-sign"aria-hidden="true" 
+										  ng-mouseenter="toggleSpecial[parentindex][0]=!toggleSpecial[parentindex][0];" ng-mouseleave="toggleSpecial[parentindex][0]=!toggleSpecial[parentindex][0];"></span>
+								<h5><span class="label label-default" ng-if="toggleSpecial[parentindex][0]">Date de la transaction au format UTC</span></h5>
+							</label> 
 							<input type="text" ng-if="(!config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
 								   id="vads_trans_date" value={{date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 							<input type="text" ng-if="(config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
@@ -95,12 +99,20 @@
 						</div>	
 
 						<div class ="form-group"> 
-							<label for ="vads_trans_id"  ng-hide="hidden[parentindex]">vads_trans_id</label>
+							<label for ="vads_trans_id"  ng-hide="hidden[parentindex]" ng-init="toggleSecial[parentindex][1]=false">vads_trans_id
+								<span class="glyphicon glyphicon-question-sign"aria-hidden="true" 
+										  ng-mouseenter="toggleSpecial[parentindex][1]=!toggleSpecial[parentindex][1];" ng-mouseleave="toggleSpecial[parentindex][1]=!toggleSpecial[parentindex][1];"></span>
+								<h5><span class="label label-default" ng-if="toggleSpecial[parentindex][1]">Identifiant unique de la transaction</span></h5>
+							</label>
 							<input type="text" class="form-control" name="vads_trans_id" id="vads_trans_id" value={{trans}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 						</div> 
 
 						<div class ="form-group" ng-if="mode!='javascript'"> 
-							<label for ="vads_site_id"  ng-hide="hidden[parentindex]">vads_site_id</label>
+							<label for ="vads_site_id"  ng-hide="hidden[parentindex]" ng-init="toggleSecial[parentindex][2]=false">vads_site_id
+								<span class="glyphicon glyphicon-question-sign"aria-hidden="true" 
+										  ng-mouseenter="toggleSpecial[parentindex][2]=!toggleSpecial[parentindex][2];" ng-mouseleave="toggleSpecial[parentindex][2]=!toggleSpecial[parentindex][2];"></span>
+								<h5><span class="label label-default" ng-if="toggleSpecial[parentindex][2]">Identifiant du site marchant</span></h5>
+							</label>
 							<input type="text" class="form-control" name="vads_site_id" id="vads_site_id"
 								   value={{siteId[formNames[$index]]}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 						</div>
@@ -116,7 +128,11 @@
 									  ((config[parentindex]['Readonly'].indexOf(item.name) == -1)&&(!(config[parentindex]['Input'])))||
 									  ((config[parentindex]['Input'].indexOf(item.name) == -1)&&(!(config[parentindex]['Readonly'])))" 
 									  ng-hide = "(item.name == 'vads_payment_cards' && isCards[parentindex])" >
-							<label for ={{item.name}} ng-hide="hidden[parentindex]">{{item.name}}</label>
+							<label for ={{item.name}} ng-hide="hidden[parentindex]" ng-init="toggle[parentindex][$index]=false">{{item.name}}
+								<span class="glyphicon glyphicon-question-sign"aria-hidden="true" 
+									  ng-mouseenter="toggle[parentindex][$index]=!toggle[parentindex][$index];" ng-mouseleave="toggle[parentindex][$index]=!toggle[parentindex][$index];"></span>
+								<h5><span class="label label-default" ng-if="toggle[parentindex][$index]">{{getDescription(item.name)}}</span></h5>
+							</label>
 							<div  ng-if="(isRegex.indexOf(item.name) == -1|| hidden[parentindex] || !help[parentindex]|| readonly[parentindex])">
 								<input type={{type}} class = "form-control" name={{item.name}} id={{item.name}} ng-model="config[parentindex][item.name]" value={{config[parentindex][item.name]}} 
 									   ng-readonly = "readonly[parentindex]" ng-hide="hidden[parentindex]">

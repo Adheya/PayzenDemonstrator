@@ -81,6 +81,14 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		$scope.currencyTabSelect.push({value : item, text:item.text});
 	}
 	
+	$scope.getDescription = function (field){
+		for (i=0;i<$scope.database.length;i++){
+			if ($scope.database[i].Field == field){
+				return $scope.database[i].Description;
+			}
+		}
+	}
+	
 	for (i=0;i<$scope.config.length;i++){
 		if (Object.size($scope.config[i]) == 1){
 			$scope.config[i]["vads_ctx_mode"] = "TEST";
@@ -192,6 +200,10 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.panelClass = [];
 	
+	$scope.toggle = [];
+	
+	$scope.toggleSpecial = [];
+	
 	var themeConfig = [];
 	
 	
@@ -202,10 +214,14 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		$scope.formShow[i] = true;
 		
 		$scope.readonly[i] = false;
+		
+		$scope.toggleSpecial = [];
 
 		$scope.hidden[i] = false;
 
 		$scope.help[i] = false;
+		
+		$scope.toggle[i] = [];
 
 		$scope.isCards[i] = false;
 		
