@@ -76,6 +76,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		return text.split('|')[i];
 	}
 	
+	$scope.currencyTabSelect = [];
+	for (item in currencyTab){
+		$scope.currencyTabSelect.push({value : item, text:item.text});
+	}
+	
 	for (i=0;i<$scope.config.length;i++){
 		if (Object.size($scope.config[i]) == 1){
 			$scope.config[i]["vads_ctx_mode"] = "TEST";
@@ -133,12 +138,18 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 				if (currencyTab[$scope.config[index]['vads_currency']].mult==1){
 					fixed=0;
 				}
+				else if (currencyTab[$scope.config[index]['vads_currency']].mult==1000){
+					fixed=3;
+				}
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_currency']].mult).toFixed(fixed).toString().replace(".",",");
 				res = res + currencyTab[$scope.config[index]['vads_currency']].symbol;
 			}
 			else {
 				if (currencyTab[$scope.config[index]['vads_sub_currency']].mult==1){
 					fixed=0;
+				}
+				else if (currencyTab[$scope.config[index]['vads_sub_currency']].mult==1000){
+					fixed=3;
 				}
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_sub_currency']].mult).toFixed(fixed).toString().replace(".",",");
 				res = res + currencyTab[$scope.config[index]['vads_sub_currency']].symbol;
@@ -152,7 +163,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	$scope.textReplace = function (str){
-		return str.replace("{large}","").replace("{primary}","");
+		return str.replace("{large}","").replace("{primary}","").replace("{success}","").replace("{info}","").replace("{warning}","").replace("{danger}","");
 	}
 	
 	$scope.colSize = [];
@@ -210,6 +221,18 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			}
 			if ($scope.config[i].Text.search("{primary}")!=-1){
 				$scope.panelClass[i] = "panel panel-primary";
+			}
+			if ($scope.config[i].Text.search("{warning}")!=-1){
+				$scope.panelClass[i] = "panel panel-warning";
+			}
+			if ($scope.config[i].Text.search("{danger}")!=-1){
+				$scope.panelClass[i] = "panel panel-danger";
+			}
+			if ($scope.config[i].Text.search("{success}")!=-1){
+				$scope.panelClass[i] = "panel panel-success";
+			}
+			if ($scope.config[i].Text.search("{info}")!=-1){
+				$scope.panelClass[i] = "panel panel-info";
 			}
 		}
 		
@@ -467,7 +490,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 				document.forms[formid].elements["vads_url_return"].value = ret;
 			}
 			else {
-				var ret = "http://demo.pzen.eu/returndebug.html?return=" + loc;
+				var ret = "http://demo.pzen.eu/returndebug.html?return=" + loc.replace("#","$");
 				document.forms[formid].elements["vads_url_return"].value = ret;
 			}
 		}
@@ -531,6 +554,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		var fixed = 2;
 		if ((currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult)==1){
 			fixed = 0;
+		}
+		else if ((currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult)==1000){
+			fixed = 3;
 		}
 		amount = (parseInt(amount)/currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult).toFixed(fixed).toString().replace(".",",");
 		$scope.amount[index][name]=amount;
