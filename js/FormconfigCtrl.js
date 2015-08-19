@@ -78,8 +78,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.currencyTabSelect = [];
 	for (item in currencyTab){
-		$scope.currencyTabSelect.push({value : item, text:item.text});
+		$scope.currencyTabSelect.push({value : item, text:currencyTab[item]['text']});
 	}
+	console.log($scope.currencyTabSelect);
 	
 	$scope.getDescription = function (field){
 		for (i=0;i<$scope.database.length;i++){
@@ -138,6 +139,15 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		}
 	}
 	
+	
+	$scope.findWithAttr = function (array, attr, value) {
+		for(var i = 0; i < array.length; i += 1) {
+			if(array[i][attr] === value) {
+				return i;
+			}
+		}
+	}
+	
 	$scope.strReplace = function (str,tab,index){
 		var ret = str.replace(/\$(\w+)\$/g, function(s, key) {
 			var res = tab[key];
@@ -149,8 +159,15 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 				else if (currencyTab[$scope.config[index]['vads_currency']].mult==1000){
 					fixed=3;
 				}
+				
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_currency']].mult).toFixed(fixed).toString().replace(".",",");
-				res = res + currencyTab[$scope.config[index]['vads_currency']].symbol;
+				
+				if (currencyTab[$scope.config[index]['vads_currency']].rl=='R'){
+					res = currencyTab[$scope.config[index]['vads_currency']].symbol + "&nbsp" + res;
+				}
+				else if (currencyTab[$scope.config[index]['vads_currency']].rl=='L'){
+					res = res + "&nbsp" + currencyTab[$scope.config[index]['vads_currency']].symbol;
+				}
 			}
 			else {
 				if (currencyTab[$scope.config[index]['vads_sub_currency']].mult==1){
@@ -160,7 +177,12 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 					fixed=3;
 				}
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_sub_currency']].mult).toFixed(fixed).toString().replace(".",",");
-				res = res + currencyTab[$scope.config[index]['vads_sub_currency']].symbol;
+				if (currencyTab[$scope.config[index]['vads_sub_currency']].rl=='R'){
+					res = currencyTab[$scope.config[index]['vads_sub_currency']].symbol + "&nbsp" + res;
+				}
+				else if (currencyTab[$scope.config[index]['vads_sub_currency']].rl=='L'){
+					res = res + "&nbsp" + currencyTab[$scope.config[index]['vads_sub_currency']].symbol;
+				}
 			}
 		   	return res || s;
 		});
@@ -204,6 +226,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.toggleSpecial = [];
 	
+	$scope.currencyModel = [];
+	
 	var themeConfig = [];
 	
 	
@@ -220,6 +244,10 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		$scope.hidden[i] = false;
 
 		$scope.help[i] = false;
+		
+		$scope.currencyModel[i] =[$scope.currencyTabSelect[
+				$scope.findWithAttr($scope.currencyTabSelect,'value',$scope.config[i].vads_currency)],$scope.currencyTabSelect[$scope.findWithAttr($scope.currencyTabSelect,'value',$scope.config[i].vads_sub_currency)]
+		];
 		
 		$scope.toggle[i] = [];
 
@@ -303,6 +331,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	
+	$scope.selectCurrency = function (index,model,vads){
+		$scope.config[index][vads] = model.value;		
+	}
 	
 	$scope.list = new Array();
 	
@@ -400,13 +431,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		return xhr;
 	}
 	
-	$scope.findWithAttr = function (array, attr, value) {
-		for(var i = 0; i < array.length; i += 1) {
-			if(array[i][attr] === value) {
-				return i;
-			}
-		}
-	}
+	
 
 	$scope.request = function(callback, index) {
 		var xhr = getXMLHttpRequest();
@@ -585,7 +610,7 @@ var urlreturn = '/'+menu[0].split('|')[0];
 
 function routeProvider ($routeProvider){
 	$routeProvider
-		.when('/:type/:name',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
-		.when('/:type',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
+		.when('/:type/:name/',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
+		.when('/:type/',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
 		.otherwise({redirectTo : urlreturn});
 };

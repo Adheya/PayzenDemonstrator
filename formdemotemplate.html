@@ -166,10 +166,26 @@
 							<label for ={{item}}>{{item}} </label>
 							<input type={{type}} class ="form-control" name={{item}} id={{item}} ng-model="config[parentindex][item]" value={{config[parentindex][item]}}  
 							   ng-if="isRegex.indexOf(item) == -1 && hidden[parentindex] && item!='vads_amount' && item!='vads_sub_amount' 
-									  && item!='vads_sub_init_amount' && item!='vads_effective_amount'"
+									  && item!='vads_sub_init_amount' && item!='vads_effective_amount' && item!='vads_sub_currency' && item!='vads_currency'"
 								   ng-change="strAmount(config[parentindex]['vads_amount'],parentindex,'vads_amount');strAmount(config[parentindex]['vads_sub_amount'],parentindex,'vads_sub_amount');
-										  strAmount(config[parentindex]['vads_sub_init_amount'],parentindex,'vads_sub_init_amount');themeConfigUpdate(parentindex);themeConfigUpdate(parentindex);">
+										  strAmount(config[parentindex]['vads_sub_init_amount'],parentindex,'vads_sub_init_amount');themeConfigUpdate(parentindex)">
 			
+							<select class="form-control" id = {{item}} name={{item}} ng-model="currencyModel[parentindex][0]" 
+									ng-if="item=='vads_currency' && hidden[parentindex]" 
+								 ng-options ="truc.text for truc in currencyTabSelect track by truc.value" 
+									ng-change="selectCurrency(parentindex,currencyModel[parentindex][0],'vads_currency');
+											   strAmount(config[parentindex]['vads_amount'],parentindex,'vads_amount');
+											   strAmount(config[parentindex]['vads_sub_amount'],parentindex,'vads_sub_amount');
+										  	   strAmount(config[parentindex]['vads_sub_init_amount'],parentindex,'vads_sub_init_amount')">
+							</select>
+							<select class="form-control" id = {{item}} name={{item}} ng-model="currencyModel[parentindex][1]" 
+									ng-if="item=='vads_sub_currency' && hidden[parentindex]" 
+								 ng-options ="truc.text for truc in currencyTabSelect track by truc.value" 
+									ng-change="selectCurrency(parentindex,currencyModel[parentindex][1],'vads_sub_currency');
+											   strAmount(config[parentindex]['vads_amount'],parentindex,'vads_amount');
+											   strAmount(config[parentindex]['vads_sub_amount'],parentindex,'vads_sub_amount');
+										  	   strAmount(config[parentindex]['vads_sub_init_amount'],parentindex,'vads_sub_init_amount')">
+							</select>
 							<div class="form-group row">
 								<div class="col-xs-6 col-md-6">
 									<input type={{type}} class = "form-control" name={{item}} id={{item}} value={{config[parentindex][item]}} 
@@ -186,7 +202,13 @@
 							</div>
 							<select  class="form-control" id = {{item}} name={{item}} ng-model="model[parentindex][findWithAttr(fields[parentindex],'name',item)]" 
 								 ng-options ="truc.value for truc in regex | filter : {name : item} track by truc.value" 
-								 ng-if="isRegex.indexOf(item) != -1 && hidden[parentindex]"></select>
+								 ng-if="isRegex.indexOf(item) != -1 && hidden[parentindex] && item!='vads_validation_mode'">
+							</select>
+							<select class="form-control" id = {{item}} name={{item}} ng-model="config[parentindex][item]" ng-if="item=='vads_validation_mode' && hidden[parentindex]">
+								 <option value="0">Validation automatique</option>
+								 <option value="1">Validation manuelle ou par webService</option>
+							</select>
+									
 						</div>
 						 <div class ="form-group" ng-show="((!hidden[parentindex] && help[parentindex]) ||(config[parentindex]['Readonly'].indexOf('vads_payment_cards') != -1))&&isCards[parentindex]"
 							  ng-if="isCards[parentindex]" id="cards"> 
