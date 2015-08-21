@@ -25,31 +25,33 @@ Si cette variable vaut "javascript", aucun appel au serveur n'est effectué.
 Object contenant les codes ISO4217 des devises disponibles associés à leur symbole et à la valeur du multiplicateur utilisée.
 ###debug
 Si cette variable vaut "html" ou "text" le mode débug est disponible pour tous les formulaires, avec affichage html ou texte par défaut.
+###urlReturn
+i cette variable vaut "detail", la valeur par defaut du champs "vads_url_return" renvoie sur une page qui liste les paramètres envoyés en GET par la page de paiement. 
 #Paramètres du tableau config
 ##Paramètres généraux
-#### "shop"
+#### "Shop"
   Nom de la boutique à utiliser dans le fichier key.ini. Si ce paramètre est le seul présent, un formulaire par défault est généré.
-#### "Title1"
+#### "Menu"
   Nom de la catégorie du menu à choisir pour accéder au formulaire.
-#### "anchor"
+#### "Anchor"
   Texte affiché dans l'url après "Title1" lors de l'accès à un seul formulaire.
 ##Paramètres de description
-#### "Title2"
+#### "Title"
   Texte affiché en haut du formulaire.
 #### "Description"
   Description du formulaire affichée en dessous de "Title2".
-#### "helpText"
+#### "HelpText"
   Texte affiché dans le cadre bleu lors de l'appuie sur le bouton "help".
 ##Présentation et fonctionnalités
-#### "help"
+#### "Help"
   Active le bouton "help" si la valeur est "yes". Le bouton "help" permet d'afficher tous les champs ainsi que le "helpText".
-#### "type"
+#### "Type"
   Cache tous les champs si la valeur est "hidden", sauf ceux étant indiqués dans le "readonly" et le "input".
-#### "readonly"
+#### "Readonly"
   Nom des champs à afficher sans possibilité de modification par l'utilisateur, entre crochés séparés par des virgules.
-#### "input"
+#### "Input"
   Nom des champs à afficher, entre crochés séparés par des virgules. 
-#### "debug"
+#### "Debug"
   Affiche la case "débug" lorsque la valeur est "yes". Quand la case est cochée puis le formulaire envoyé, la page appelée montre le code html des champs envoyés.
 #### "Button"
   Permet de changer la forme du bouton d'envoie du formulaire. Entrer le nom des moyens de paiements entre crochés séparés par des virgules pour afficher les icones des moyens de paiements en guise de bouton d'envoie.

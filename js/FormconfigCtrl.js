@@ -62,6 +62,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	};
 
 
+	
+	$scope.isIcon = function (icon){
+		return ((icon.search("<")==-1));
+	}
+	
 	$scope.config=config;
 	$scope.currencyTab = currencyTab;
 	$scope.debug = debug;
@@ -435,17 +440,18 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 
 	$scope.request = function(callback, index) {
 		var xhr = getXMLHttpRequest();
-
+		var debug = false;
+		if($scope.isDebug[index]) debug = true;
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				callback(xhr.responseText, $scope.formNames[index],index);
+				callback(xhr.responseText, $scope.formNames[index],index,debug);
 			}
 		};
 
 	var arg = encodeURIComponent(JSON.stringify($scope.compute($scope.formNames[index])));
 	var name = $scope.config[index].Shop;
 	
-	if ($scope.isDebug[index]){
+	if (debug && mode=='javascript'){
 			formDebug($scope.formNames[index],index);
 	}
 	else{
@@ -455,12 +461,13 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	$scope.siteId = [];	
+	$scope.urlSubmit = [];
 	$scope.requestSiteId = function(callback, index) {
 		var xhr = getXMLHttpRequest();
 
 		
 		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && !config[index].Text) {
 				callback(xhr.responseText,$scope.formNames[index]);
 			}
 		};
@@ -473,55 +480,54 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 
 	
+	
 	var formDebug = function (formid,index){
-		if ($scope.isDebug[index]){
+		document.forms[formid].action = "formdebug.html";
+		document.forms[formid].method = "get";
+		document.forms[formid].elements["signature"].value = "****";
+		document.forms[formid].submit();
+	}
+	
+	
+	$scope.readData = function (sData, formid, index, debug) {
+		var json=JSON.parse(sData);
+		var sign = json.sign;
+		var site_id = json.site_id;
+		var url_forms = json.url_forms;
+		if (debug){
 			document.forms[formid].action = "formdebug.html";
 			document.forms[formid].method = "get";
-			document.forms[formid].elements["signature"].value = "****";
-			document.forms[formid].submit();
 		}
-	 }
-	
-	
-	$scope.readData = function (sData, formid, index) {
-		if ($scope.isDebug[index]){
-			formDebug(formid,index);
+		else {document.forms[formid].action = url_forms;}
+		document.forms[formid].elements["vads_site_id"].value = site_id;
+		document.forms[formid].elements["signature"].value = sign;
+
+
+		if (!$scope.iframe[index]){
+			if(document.forms[formid].elements["signature"].value){
+				document.forms[formid].submit();
+
+			}
 		}
-		else {
-			var json=JSON.parse(sData);
-			var sign = json.sign;
-			var site_id = json.site_id;
-			var url_forms = json.url_forms;
-			document.forms[formid].action = url_forms;
-			document.forms[formid].elements["vads_site_id"].value = site_id;
-			document.forms[formid].elements["signature"].value = sign;
-
-
-			if (!$scope.iframe[index]){
-				if(document.forms[formid].elements["signature"].value){
-					document.forms[formid].submit();
-
-				}
+		else{
+			var iframe = document.getElementById($scope.iframeNames[index]);
+			var innerdoc = iframe.contentDocument || iframe.contentWindow.document;
+			for (i=0;i<document.forms[formid].elements.length;i++){
+				innerdoc.forms[formid].elements[i].value = document.forms[formid].elements[i].value;
 			}
-			else{
-				var iframe = document.getElementById($scope.iframeNames[index]);
-				var innerdoc = iframe.contentDocument || iframe.contentWindow.document;
-				for (i=0;i<document.forms[formid].elements.length;i++){
-					innerdoc.forms[formid].elements[i].value = document.forms[formid].elements[i].value;
-				}
-				if(innerdoc.forms[formid].elements["signature"].value){
-					innerdoc.forms[formid].action = url_forms;
-					innerdoc.forms[formid].submit();
+			if(innerdoc.forms[formid].elements["signature"].value){
+				innerdoc.forms[formid].action = url_forms;
+				innerdoc.forms[formid].submit();
 
-				}
 			}
-	 	}
+		}
 	}
 	
 	$scope.showWarning=false;
 	$scope.readDataSiteId = function (sData,formid) {
 		var json=JSON.parse(sData);
-		$scope.$apply(function(){$scope.siteId[formid]=json.site_id;});
+		
+		$scope.$apply(function(){$scope.siteId[formid]=json.site_id;$scope.urlSubmit[formid]=json.url_forms;});
 		setTimeout(function(){$scope.$apply(function(){$scope.showWarning=true;})},1000);
 		//$scope.iframeUrl[formid] = json.url_forms; 
 		if (urlReturn=="detail"){

@@ -67,16 +67,16 @@
 	
 <pre>
 <code class="language-html" data-lang="html" ng-if="html">
-&lt;form&gt;
-<div ng-repeat="item in fields" ng-if="item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div>&lt;/form&gt;
+&lt;form action="<font color ='green'>{{urlSubmit}}</font>"&gt;
+<div ng-repeat="item in fields" ng-if="item.name!='urlSubmit' &&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">vads_{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div></div>&lt;/form&gt;
 </code>
-<div  ng-repeat="item in fields" ng-if="!html&&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'">{{item.name}}  {{item.value}}</div>
+<div  ng-repeat="item in fields" ng-if="!html&&item.name!='urlSubmit'&&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">vads_{{item.name}}  {{item.value}}</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">{{item.name}}  {{item.value}}</div></div>
 </pre>
-			<form id="form1" name="form1">
+			<form id="form1" name="form1"   method="post"><!--Prevent double UF8 encoding -->
 				<div class = "form-group" ng-repeat="item in fields track by $index" ng-if="item.name!='shop'">
 					<input type="hidden" name={{item.name}} id={{item.name}} value={{item.value}}>
 				</div>
-				<button type="button" class="btn btn-success" ng-click ="request(readData)" ng-if="mode!='javascript'">Submit</button>
+				<button type="button" class="btn btn-success" ng-click="send('form1')" ng-if="mode!='javascript'">Submit</button>
 			</form>
 
 	</div>
