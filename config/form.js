@@ -4,6 +4,8 @@ var mode = "php";
 
 var debug = "html";
 
+var pageTitle = "Demo Payzen";
+
 var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro (€)', rl : 'L'},
                     '756' : {symbol : 'CHF', mult :'100', text : '756 - CHF Franc Suisse (CHF)', rl : 'L'},
                     '826' : {symbol : '£', mult :'100', text : '826 - GBP Livre Sterling (£)', rl : 'L'},
