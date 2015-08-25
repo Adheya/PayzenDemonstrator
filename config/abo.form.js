@@ -2,11 +2,6 @@
 var configs =[
 
 {
-    "Menu": "abo",
-    "Shop":"DemoGO"
-},
-
-{
     "Shop":"DemoMax",
     "Anchor":"demoAmount",
     "Menu": "abo",
