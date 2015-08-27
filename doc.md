@@ -26,7 +26,9 @@ Object contenant les codes ISO4217 des devises disponibles associés à leur sym
 ###debug
 Si cette variable vaut "html" ou "text" le mode débug est disponible pour tous les formulaires, avec affichage html ou texte par défaut.
 ###urlReturn
-i cette variable vaut "detail", la valeur par defaut du champs "vads_url_return" renvoie sur une page qui liste les paramètres envoyés en GET par la page de paiement. 
+Si cette variable vaut "detail", la valeur par defaut du champ "vads_url_return" renvoie sur une page qui liste les paramètres envoyés en GET par la page de paiement.
+###ReturnTimeout
+Définit en seconde le temps de retour dans le mode "detail". Pas de retour si ce paramètre vaut "no".
 #Paramètres du tableau config
 ##Paramètres généraux
 #### "Shop"
@@ -59,4 +61,4 @@ i cette variable vaut "detail", la valeur par defaut du champs "vads_url_return"
   Texte affiché sur le bouton d'envoie.
 ##Champs du formulaire
 #### "vads_..."
-  Valeur par défaut du champs "vads_...".
+  Valeur par défaut du champ "vads_...".

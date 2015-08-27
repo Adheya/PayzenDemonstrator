@@ -121,6 +121,7 @@
 						   value="****" ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 				</div>
 
+
 				<div class ="form-group" ng-repeat="item in fields[parentindex] track by $index" 
 					 ng-if = "(!hidden[parentindex]) || (!(config[parentindex]['Input'])) && (!(config[parentindex]['Readonly']))||
 							  ((config[parentindex]['Input'].indexOf(item.name) == -1)&&(config[parentindex]['Readonly'].indexOf(item.name) == -1))||
@@ -242,10 +243,10 @@
 					   value={{config[parentindex].vads_redirect_success_timeout}} ng-if="config[parentindex]['vads_redirect_success_timeout']">
 				<input type="hidden" name="redirect_error_timeout" id="redirect_error_timeout" 
 					   value={{config[parentindex].vads_redirect_error_timeout}} ng-if="config[parentindex]['vads_redirect_error_timeout']">
-				<input type="hidden" name="vads_url_return" id="vads_url_return" value="" ng-if ="!config[parentindex]['vads_url_return']">
+				<input type="hidden" name="vads_url_return" id="vads_url_return" value={{url_return[parentindex]}} ng-if ="!config[parentindex]['vads_url_return']">
 				<input type="hidden" name="vads_return_mode" id="vads_return_mode" value={{returnMode}} ng-if ="!config[parentindex]['vads_return_mode']">
-				<input type="hidden" name="vads_redirect_success_timeout" id="vads_redirect_success_timeout" value="5" ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_success_timeout']">
-				<input type="hidden" name="vads_redirect_error_timeout" id="vads_redirect_error_timeout" value="5" ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_error_timeout']">
+				<input type="hidden" name="vads_redirect_success_timeout" id="vads_redirect_success_timeout" value={{ReturnTimeout}} ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_success_timeout']">
+				<input type="hidden" name="vads_redirect_error_timeout" id="vads_redirect_error_timeout" value={{ReturnTimeout}} ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_error_timeout']">
 				<input type="hidden" name="signature" id="signature" value={{key}}>
 				<div class="checkbox" ng-if="!isCards[parentindex]&&(debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript')">
 					<label><input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug</label>

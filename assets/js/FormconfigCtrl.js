@@ -44,7 +44,7 @@ var myApp = angular.module('myApp', ['ngRoute','ngSanitize','ui.bootstrap']).con
 
 
 myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
-	$http.get('Database/dico.json').
+	$http.get('database/dico.json').
     success(function(data, status, headers, config) {
       $scope.database = data;
 		$scope.regtab();
@@ -62,13 +62,47 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	};
 
 
+	
+	$scope.isIcon = function (icon){
+		return ((icon.search("<")==-1));
+	}
+	
 	$scope.config=config;
 	$scope.currencyTab = currencyTab;
 	$scope.debug = debug;
 	$scope.mode = mode;
+	$scope.menu = menu;
+	if (ReturnTimeout == "no") $scope.ReturnTimeout = 0;
+	else $scope.ReturnTimeout = ReturnTimeout;
+	$scope.returnMode = "";
+	$scope.urlReturn = urlReturn;
+	if (urlReturn=="detail"){
+		$scope.returnMode = "GET"; 
+	}
+	$scope.menuSplit = function (text,i){
+		return text.split('|')[i];
+	}
+	
+	$scope.textReplace = function (str){
+		return str.replace("{large}","").replace("{primary}","").replace("{success}","").replace("{info}","").replace("{warning}","").replace("{danger}","");
+	}
+	
+	$scope.currencyTabSelect = [];
+	for (item in currencyTab){
+		$scope.currencyTabSelect.push({value : item, text:currencyTab[item]['text']});
+	}
+
+	
+	$scope.getDescription = function (field){
+		for (i=0;i<$scope.database.length;i++){
+			if ($scope.database[i].Field == field){
+				return $scope.database[i].Description;
+			}
+		}
+	}
 	
 	for (i=0;i<$scope.config.length;i++){
-		if (Object.size($scope.config[i]) == 1){
+		if ((Object.size($scope.config[i]) == 1||Object.size($scope.config[i]) == 2)&&!$scope.config[i]["Text"]){
 			$scope.config[i]["vads_ctx_mode"] = "TEST";
 			$scope.config[i]["vads_amount"] = Math.floor((Math.random() * 10000)+1).toString();
 			$scope.config[i]["vads_currency"] = "978";
@@ -76,21 +110,24 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.config[i]["vads_page_action"] = "PAYMENT";
 			$scope.config[i]["vads_payment_config"] = "SINGLE";
 			$scope.config[i]["vads_version"] = "V2";
-			$scope.config[i]["anchor"] = "exemple" + $scope.config.length;
+			$scope.config[i]["Anchor"] = "exemple" + $scope.config.length;
 			$scope.config[i]["Description"] = "Le montant total de votre commande est de $vads_amount$ payable en une seule fois";
-			$scope.config[i]["helpText"] = "Description détaillée de l'exemple";
-			$scope.config[i]["help"] = "yes";
-			$scope.config[i]["type"] = "hidden";
+			$scope.config[i]["HelpText"] = "Description détaillée de l'exemple";
+			$scope.config[i]["Help"] = "yes";
+			$scope.config[i]["Type"] = "hidden";
 			$scope.config[i]["Button"] = "Payer";
 			$scope.config[i]["ButtonText"] = "Payer";
-			$scope.config[i]["Title1"] = menu[0];
-			$scope.config[i]["Title2"] = "Paiement simple";
+			if(!$scope.config[i]["Menu"]) $scope.config[i]["Menu"] = $scope.menuSplit(menu[0],0);
+			$scope.config[i]["Title"] = "Paiement simple";
 		}
 	}
 
 
-	$scope.menu = menu;
+	
+	
 
+	
+	
 	$scope.urlName = $routeParams.name;
 	$scope.urlType = $routeParams.type;
 
@@ -99,7 +136,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		if ($scope.urlName) {
 			$scope.config = [];
 			for (i=0;i<config.length;i++){
-				if (config[i].anchor == $scope.urlName){
+				if (config[i].Anchor == $scope.urlName){
 					$scope.config.push(config[i]);
 				}
 			}
@@ -107,9 +144,24 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		else {
 			$scope.config = [];
 			for (i=0;i<config.length;i++){
-				if (config[i].Title1 == $scope.urlType){
+				if (config[i].Menu == $scope.urlType){
 					$scope.config.push(config[i]);
 				}
+			}
+		}
+	}
+	
+	if($scope.config[0]) {
+		if ($scope.config[0].Text) {
+			document.title = pageTitle + ' - ' + $scope.textReplace($scope.menuSplit($scope.config[0].Text,0));
+			document.title += ' (' + $scope.config[0].Menu + ')';
+		}
+		else document.title = pageTitle + ' (' + $scope.config[0].Menu + ')';
+	}
+	$scope.findWithAttr = function (array, attr, value) {
+		for(var i = 0; i < array.length; i += 1) {
+			if(array[i][attr] === value) {
+				return i;
 			}
 		}
 	}
@@ -122,15 +174,33 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 				if (currencyTab[$scope.config[index]['vads_currency']].mult==1){
 					fixed=0;
 				}
+				else if (currencyTab[$scope.config[index]['vads_currency']].mult==1000){
+					fixed=3;
+				}
+				
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_currency']].mult).toFixed(fixed).toString().replace(".",",");
-				res = res + currencyTab[$scope.config[index]['vads_currency']].symbol;
+				
+				if (currencyTab[$scope.config[index]['vads_currency']].rl=='R'){
+					res = currencyTab[$scope.config[index]['vads_currency']].symbol + res;
+				}
+				else if (currencyTab[$scope.config[index]['vads_currency']].rl=='L'){
+					res = res + currencyTab[$scope.config[index]['vads_currency']].symbol;
+				}
 			}
 			else {
 				if (currencyTab[$scope.config[index]['vads_sub_currency']].mult==1){
 					fixed=0;
 				}
+				else if (currencyTab[$scope.config[index]['vads_sub_currency']].mult==1000){
+					fixed=3;
+				}
 				res=(parseInt(res)/currencyTab[$scope.config[index]['vads_sub_currency']].mult).toFixed(fixed).toString().replace(".",",");
-				res = res + currencyTab[$scope.config[index]['vads_sub_currency']].symbol;
+				if (currencyTab[$scope.config[index]['vads_sub_currency']].rl=='R'){
+					res = currencyTab[$scope.config[index]['vads_sub_currency']].symbol + res;
+				}
+				else if (currencyTab[$scope.config[index]['vads_sub_currency']].rl=='L'){
+					res = res + currencyTab[$scope.config[index]['vads_sub_currency']].symbol;
+				}
 			}
 		   	return res || s;
 		});
@@ -140,7 +210,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		return ret;
 	}
 	
-	$scope.colSize = "col-md-6";
+	
+	
+	$scope.colSize = [];
 
 	$scope.formShow = [];
 	
@@ -164,24 +236,69 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.isDebug = [];
 	
+	$scope.panelClass = [];
+	
+	$scope.toggle = [];
+	
+	$scope.toggleSpecial = [];
+	
+	$scope.currencyModel = [];
+	
+	$scope.url_return = [];
+	
 	var themeConfig = [];
 	
 	
 	
-	if ($scope.config.length == 1){$scope.colSize="col-md-10";}
+	
 
 	for (i=0;i<$scope.config.length;i++){
 		$scope.formShow[i] = true;
 		
 		$scope.readonly[i] = false;
+		
+		$scope.url_return[i] = "";
+		
+		$scope.toggleSpecial = [];
 
 		$scope.hidden[i] = false;
 
 		$scope.help[i] = false;
+		
+		$scope.currencyModel[i] =[$scope.currencyTabSelect[
+				$scope.findWithAttr($scope.currencyTabSelect,'value',$scope.config[i].vads_currency)],$scope.currencyTabSelect[$scope.findWithAttr($scope.currencyTabSelect,'value',$scope.config[i].vads_sub_currency)]
+		];
+		
+		$scope.toggle[i] = [];
 
 		$scope.isCards[i] = false;
 		
 		$scope.iframe[i] = false;
+		
+		$scope.colSize[i] = "col-md-6";
+		
+		$scope.panelClass[i] = "panel panel-default";
+		
+		if ($scope.config[i].Text){
+			if ($scope.config[i].Text.search("{large}")!=-1){
+				$scope.colSize[i] = "col-md-12";
+			}
+			if ($scope.config[i].Text.search("{primary}")!=-1){
+				$scope.panelClass[i] = "panel panel-primary";
+			}
+			if ($scope.config[i].Text.search("{warning}")!=-1){
+				$scope.panelClass[i] = "panel panel-warning";
+			}
+			if ($scope.config[i].Text.search("{danger}")!=-1){
+				$scope.panelClass[i] = "panel panel-danger";
+			}
+			if ($scope.config[i].Text.search("{success}")!=-1){
+				$scope.panelClass[i] = "panel panel-success";
+			}
+			if ($scope.config[i].Text.search("{info}")!=-1){
+				$scope.panelClass[i] = "panel panel-info";
+			}
+		}
 		
 		$scope.isDebug[i] = (mode=='javascript');
 		
@@ -193,16 +310,16 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		
 		$scope.iframeNames[i] = "iframe" + i;
 
-		if ($scope.config[i].type == "hidden"){
+		if ($scope.config[i].Type == "hidden"){
 		$scope.hidden[i] = true;
 		$scope.readonly[i] = true;
 		}
 
-		if ($scope.config[i].help == "yes"){
+		if ($scope.config[i].Help == "yes"){
 			$scope.help[i] = true;
 		}
 
-		if ($scope.config[i].type == "readonly"){
+		if ($scope.config[i].Type == "readonly"){
 			$scope.readonly[i] = true;
 		}
 
@@ -210,7 +327,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.isCards[i] = true;
 		}
 		
-		$scope.iframe[i] = ($scope.config[i].iframe == "yes");
+		$scope.iframe[i] = ($scope.config[i].Iframe == "yes");
 		
 		
 		if ($scope.config[i].vads_theme_config){
@@ -218,6 +335,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			$scope.config[i].vads_theme_config = $scope.strReplace($scope.config[i].vads_theme_config,$scope.config[i],i);	
 		}
 	}
+	
+	if ($scope.config.length == 1){$scope.colSize=["col-md-10"];}
 
 
     $scope.showIframe = function(index){	
@@ -232,6 +351,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	
+	$scope.selectCurrency = function (index,model,vads){
+		$scope.config[index][vads] = model.value;		
+	}
 	
 	$scope.list = new Array();
 	
@@ -280,7 +402,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 			}
 			$scope.fields.push(field);
 		}
-		console.log($scope.fields);
+		
 	}
 	
 	listField($scope.config);
@@ -304,7 +426,7 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 				}
 				$scope.isRegex.push(field);
 			}
-		}console.log ($scope.regex);
+		}
 	}
 
 	
@@ -329,27 +451,22 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		return xhr;
 	}
 	
-	$scope.findWithAttr = function (array, attr, value) {
-		for(var i = 0; i < array.length; i += 1) {
-			if(array[i][attr] === value) {
-				return i;
-			}
-		}
-	}
+	
 
 	$scope.request = function(callback, index) {
 		var xhr = getXMLHttpRequest();
-
+		var debug = false;
+		if($scope.isDebug[index]) debug = true;
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				callback(xhr.responseText, $scope.formNames[index],index);
+				callback(xhr.responseText, $scope.formNames[index],index,debug);
 			}
 		};
 
 	var arg = encodeURIComponent(JSON.stringify($scope.compute($scope.formNames[index])));
-	var name = $scope.config[index].shop;
+	var name = $scope.config[index].Shop;
 	
-	if ($scope.isDebug[index]){
+	if (debug && mode=='javascript'){
 			formDebug($scope.formNames[index],index);
 	}
 	else{
@@ -359,78 +476,90 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	$scope.siteId = [];	
+	$scope.urlSubmit = [];
 	$scope.requestSiteId = function(callback, index) {
 		var xhr = getXMLHttpRequest();
 
 		
 		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-				callback(xhr.responseText,$scope.formNames[index]);
+			if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0) && !$scope.config[index].Text) {
+				callback(xhr.responseText,$scope.formNames[index],index);
 			}
 		};
 
-		var name = $scope.config[index].shop;
-
+		var name = $scope.config[index].Shop;
+		
 		xhr.open("GET", "signature.php?name=" + name, true);
 		xhr.send(null);
 	}
 	
 
 	
+	
 	var formDebug = function (formid,index){
-		if ($scope.isDebug[index]){
+		document.forms[formid].action = "formdebug.html";
+		document.forms[formid].method = "get";
+		document.forms[formid].elements["signature"].value = "****";
+		document.forms[formid].submit();
+	}
+	
+	
+	$scope.readData = function (sData, formid, index, debug) {
+		var json=JSON.parse(sData);
+		var sign = json.sign;
+		var site_id = json.site_id;
+		var url_forms = json.url_forms;
+		if (debug){
 			document.forms[formid].action = "formdebug.html";
 			document.forms[formid].method = "get";
-			document.forms[formid].elements["signature"].value = "****";
-			document.forms[formid].submit();
 		}
-	 }
-	
-	
-	$scope.readData = function (sData, formid, index) {
-		if ($scope.isDebug[index]){
-			formDebug(formid,index);
+		else {document.forms[formid].action = url_forms;}
+		document.forms[formid].elements["vads_site_id"].value = site_id;
+		document.forms[formid].elements["signature"].value = sign;
+
+
+		if (!$scope.iframe[index]){
+			if(document.forms[formid].elements["signature"].value){
+				document.forms[formid].submit();
+
+			}
 		}
-		else {
-			var json=JSON.parse(sData);
-			var sign = json.sign;
-			var site_id = json.site_id;
-			var url_forms = json.url_forms;
-			document.forms[formid].action = url_forms;
-			document.forms[formid].elements["vads_site_id"].value = site_id;
-			document.forms[formid].elements["signature"].value = sign;
-
-
-			if (!$scope.iframe[index]){
-				if(document.forms[formid].elements["signature"].value){
-					document.forms[formid].submit();
-
-				}
+		else{
+			var iframe = document.getElementById($scope.iframeNames[index]);
+			var innerdoc = iframe.contentDocument || iframe.contentWindow.document;
+			for (i=0;i<document.forms[formid].elements.length;i++){
+				innerdoc.forms[formid].elements[i].value = document.forms[formid].elements[i].value;
 			}
-			else{
-				var iframe = document.getElementById($scope.iframeNames[index]);
-				var innerdoc = iframe.contentDocument || iframe.contentWindow.document;
-				for (i=0;i<document.forms[formid].elements.length;i++){
-					innerdoc.forms[formid].elements[i].value = document.forms[formid].elements[i].value;
-				}
-				if(innerdoc.forms[formid].elements["signature"].value){
-					innerdoc.forms[formid].action = url_forms;
-					innerdoc.forms[formid].submit();
+			if(innerdoc.forms[formid].elements["signature"].value){
+				innerdoc.forms[formid].action = url_forms;
+				innerdoc.forms[formid].submit();
 
-				}
 			}
-	 	}
+		}
 	}
 	
 	$scope.showWarning=false;
-	$scope.readDataSiteId = function (sData,formid) {
+	$scope.readDataSiteId = function (sData,formid, index) {
 		var json=JSON.parse(sData);
-		$scope.$apply(function(){$scope.siteId[formid]=json.site_id;});
+		$scope.siteId[formid]=json.site_id;
+		$scope.urlSubmit[formid]=json.url_forms;
 		setTimeout(function(){$scope.$apply(function(){$scope.showWarning=true;})},1000);
 		//$scope.iframeUrl[formid] = json.url_forms; 
-		if(!document.forms[formid].elements["vads_url_return"].value){
-			document.forms[formid].elements["vads_url_return"].value = document.location.href;
+		if (urlReturn=="detail"){
+			var loc = document.location.href;
+			if (document.location.href.search("demo.d.pzen.eu")!=-1){
+				var ret = "http://demo.d.pzen.eu/returndebug.html?return=" + loc.replace("#","$");
+				$scope.url_return[index] = ret;
+			}
+			else {
+				var ret = "http://demo.pzen.eu/returndebug.html?return=" + loc.replace("#","$");
+				$scope.url_return[index] = ret;
+			}
 		}
+		else if(!document.forms[formid].elements["vads_url_return"].value){
+			$scope.url_return[index] = document.location.href;
+		}
+		
 		
 	}
 	
@@ -488,6 +617,9 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		if ((currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult)==1){
 			fixed = 0;
 		}
+		else if ((currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult)==1000){
+			fixed = 3;
+		}
 		amount = (parseInt(amount)/currencyTab[$scope.config[index][$scope.strCurrency(name)]].mult).toFixed(fixed).toString().replace(".",",");
 		$scope.amount[index][name]=amount;
 		
@@ -495,11 +627,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	  	  
 });
 
-
+var urlreturn = '/'+menu[0].split('|')[0];
 
 function routeProvider ($routeProvider){
 	$routeProvider
-		.when('/:type/:name',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
-		.when('/:type',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
-		.otherwise({redirectTo : '/Démo'});
+		.when('/:type/:name/',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
+		.when('/:type/',{templateUrl:'formdemotemplate.html', controller:'ctrl'})
+		.otherwise({redirectTo : urlreturn});
 };

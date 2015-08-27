@@ -1,10 +1,14 @@
 var menu = ["demo|Démo","simple|Paiements", "multi|Paiements fractionnés", "recur|Paiements récurrents","abo|Abonnements", "sepa|Sepa", "press|Presse"];
 
-var mode = "php";
 
-var debug = "html";
+
+var mode = "php"; //'php' ou 'javascript'. Le mode javascript fait fonctionner l'application en mode debug, sans utiliser de php.
+
+var debug = "html"; //'html', 'text' ou 'no'. Définie la présence de la case debug ainsi que la forme de l'affichage de champs par défault sur la page debug
 
 var pageTitle = "Demo Payzen";
+
+var ReturnTimeout = "10"; // 0..999 ou 'no'. Défini le temps avant retour automatique si urlReturn vaut 'detail'.
 
 var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro (€)', rl : 'L'},
                     '756' : {symbol : 'CHF', mult :'100', text : '756 - CHF Franc Suisse (CHF)', rl : 'L'},
@@ -54,4 +58,4 @@ var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro
 
 //urlreturn : self ou detail
 
-var urlReturn = "detail";
+var urlReturn = "detail"; //self ou detail. detail permet à la page de paiement d'effectuer un retour sur une page qui affiche les champs transmis lors du paiement.
