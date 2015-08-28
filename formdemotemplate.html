@@ -247,6 +247,7 @@
 				<input type="hidden" name="vads_return_mode" id="vads_return_mode" value={{returnMode}} ng-if ="!config[parentindex]['vads_return_mode']">
 				<input type="hidden" name="vads_redirect_success_timeout" id="vads_redirect_success_timeout" value={{returnTimeout}} ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_success_timeout']">
 				<input type="hidden" name="vads_redirect_error_timeout" id="vads_redirect_error_timeout" value={{returnTimeout}} ng-if="urlReturn=='detail'&&!config[parentindex]['vads_redirect_error_timeout']">
+				<input type="hidden" name="vads_contrib" id="vads_contrib" value={{contribValue[parentindex]}} ng-if="(contrib=='true')&&!config[parentindex]['vads_contrib']">
 				<input type="hidden" name="signature" id="signature" value={{key}}>
 				<div class="checkbox" ng-if="!isCards[parentindex]&&(debug=='text'||debug=='html'||config[parentindex].debug=='yes'||mode=='javascript')">
 					<label><input type="checkbox" ng-model="isDebug[parentindex]" ng-disabled="mode=='javascript'"> Debug</label>

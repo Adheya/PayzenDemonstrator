@@ -236,6 +236,10 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.isDebug = [];
 	
+	$scope.contrib = vads_contrib;
+	
+	$scope.contribValue = [];
+	
 	$scope.panelClass = [];
 	
 	$scope.toggle = [];
@@ -262,6 +266,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		$scope.toggleSpecial = [];
 
 		$scope.hidden[i] = false;
+		
+		if (vads_contrib=='true') $scope.contribValue[i]= "PayzenDemonstrator - " + $scope.config[i].Menu + "/" + $scope.config[i].Anchor ;
 
 		$scope.help[i] = false;
 		
