@@ -72,8 +72,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	$scope.debug = debug;
 	$scope.mode = mode;
 	$scope.menu = menu;
-	if (ReturnTimeout == "no") $scope.ReturnTimeout = 0;
-	else $scope.ReturnTimeout = ReturnTimeout;
+	if (returnTimeout == "no") $scope.returnTimeout = 0;
+	else $scope.returnTimeout = returnTimeout;
 	$scope.returnMode = "";
 	$scope.urlReturn = urlReturn;
 	if (urlReturn=="detail"){

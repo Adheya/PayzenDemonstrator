@@ -1,15 +1,61 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Base parameters
+//  - see key.ini
+//  - see demo.form.js
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//  menu : define menu to display
+//   syntax ["url|Text", …]
+//
 var menu = ["demo|Démo","simple|Paiements", "multi|Paiements fractionnés", "recur|Paiements récurrents","abo|Abonnements", "sepa|Sepa", "press|Presse"];
 
 
-
-var mode = "php"; //'php' ou 'javascript'. Le mode javascript fait fonctionner l'application en mode debug, sans utiliser de php.
-
-var debug = "html"; //'html', 'text' ou 'no'. Définie la présence de la case debug ainsi que la forme de l'affichage de champs par défault sur la page debug
-
+//  pageTitle : define the HTML page Title
+//
 var pageTitle = "Demo Payzen";
 
-var ReturnTimeout = "10"; // 0..999 ou 'no'. Défini le temps avant retour automatique si urlReturn vaut 'detail'.
 
+//  mode : define if it's simultation or test
+//   javascript : simulation mode - no call to payzen is done, can be used for evaluation or education without payzen shop
+//   php        : use the PHP wrapper to calculate and veify signature and allow to call Payzen using key.ini parameters
+//       others languages can be added
+//
+var mode = "javascript";
+
+
+//  urlReturn : allows to overide the shop parameters to force return to the script
+//               this is done by adding 'vads_url_return' to the form and 'vads_return_mode' in GET mode
+//   self   : when the payor hit "retun to shop" he'll be redirected to the script page
+//   detail : with this option an extra page is added to desplai the parameters returned by Payzen
+//   no     : return will be done accordling to Shop parameters (no parameters added to the submited form)
+//
+var urlReturn = "detail"; //self ou detail. detail permet à la page de paiement d'effectuer un retour sur une page qui affiche les champs transmis lors du paiement.
+
+
+//  returnTimeout : if setup will setup an autmatic timeout using 'vads_redirect_error_timeout' 'vads_redirect_success_timeout'
+//     numeric value : 0 will force an automatic return without displaying the paiement ticket page
+//                   : 1 to 600 will wait this time (in seconds) before performing the automatic return
+//     no            : no automatic return (no parameters added to the submited form)
+//
+var returnTimeout = "10";
+
+//  debug : allows to display an intermediate page with the parameters
+//   html : displays as an html form the parmameters submited to Payzen
+//   text : displays as key values the parameters
+//   no   : "debut" checkbox not displayed
+//
+//  note about urlReturn & returnTimeout
+//  note about javascript
+//
+var debug = "html";
+
+
+// currencyTab : define Currency table to display Human readable informations on the examples :)
+//
+//
 var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro (€)', rl : 'L'},
                     '756' : {symbol : 'CHF', mult :'100', text : '756 - CHF Franc Suisse (CHF)', rl : 'L'},
                     '826' : {symbol : '£', mult :'100', text : '826 - GBP Livre Sterling (£)', rl : 'L'},
@@ -35,7 +81,7 @@ var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro
                     '352' : {symbol : 'kr', mult :'1', text : '352 - ISK Couronne islandaise (kr)', rl : 'L'},
                     '410' : {symbol : '₩', mult :'100', text : '410 - KPW Won de Corée du Sud (₩)', rl : 'L'},
                     '414' : {symbol : 'din', mult :'1000', text : '414 - KWD Dinar Koweïtien (din)', rl : 'L'},
-                    '504' : {symbol : 'dh', mult :'100', text : '504 - MAD Dirham Marocain (د.م.)', rl : 'L'},
+                    '504' : {symbol : 'dh', mult :'100', text : '504 - MAD Dirham Marocain (ﺩ.ﻡ.)', rl : 'L'},
                     '484' : {symbol : '$', mult :'100', text : '484 - MXN Peso mexicain ($)', rl : 'L'},
                     '458' : {symbol : 'RM', mult :'100', text : '458 - MYR Ringgit malais (RM)', rl : 'L'},
                     '578' : {symbol : 'kr', mult :'100', text : '578 - NOK Couronne Norvégienne (kr)', rl : 'R'},
@@ -54,8 +100,5 @@ var currencyTab = { '978' : {symbol : '€', mult :'100', text : '978 - EUR Euro
                     '901' : {symbol : '$', mult :'100', text : '901 - TWD Nouveau dollar de Taïwan ($)', rl : 'L'},
                     '840' : {symbol : '$', mult :'100', text : '840 - USD Dollar USA ($)', rl : 'L'},
                     '710' : {symbol : 'R', mult :'100', text : '710 - ZAR Rand Sud-africain (R)', rl : 'L'},
-				  };
-
-//urlreturn : self ou detail
-
-var urlReturn = "detail"; //self ou detail. detail permet à la page de paiement d'effectuer un retour sur une page qui affiche les champs transmis lors du paiement.
+                  };
+// end
