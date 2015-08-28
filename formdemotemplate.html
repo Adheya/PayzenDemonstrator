@@ -93,6 +93,8 @@
 						   id="vads_trans_date" value={{date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 					<input type="text" ng-if="(config[parentindex].vads_trans_date)" class = "form-control" name="vads_trans_date" 
 						   id="vads_trans_date" value={{config[parentindex].vads_trans_date}} ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
+					<input type="text" ng-if="(!config[parentindex].vads_version)" class = "form-control" name="vads_version" 
+						   id="vads_version" value="V2" ng-hide="hidden[parentindex] || !help[parentindex]" readonly>
 					<input type="hidden" class = "form-control" name="shop" 
 						   id="shop" value={{config[parentindex].Shop}}>
 				</div>	
