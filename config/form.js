@@ -40,7 +40,11 @@ var urlReturn = "detail"; //self ou detail. detail permet à la page de paiement
 //                   : 1 to 600 will wait this time (in seconds) before performing the automatic return
 //     no            : no automatic return (no parameters added to the submited form)
 //
+<<<<<<< HEAD
 var returnTimeout = "10";
+=======
+var ReturnTimeout = "10";
+>>>>>>> origin/master
 
 //  debug : allows to display an intermediate page with the parameters
 //   html : displays as an html form the parmameters submited to Payzen
