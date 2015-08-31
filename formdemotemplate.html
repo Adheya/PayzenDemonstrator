@@ -80,7 +80,7 @@
 				<p ng-if="config[$index].HelpText" ng-bind-html="strReplace(config[$index].HelpText,config[$index],$index)"></p>
 			</div>
 			<div class="alert alert-danger" ng-if="!siteId[formNames[$index]]&&showWarning&&mode!='javascript'&&!config[$index].Text">
-				<p>Boutique non répertoriée</p>
+				<p>Boutique non répertoriée. <br>Configurez la boutique dans key.ini ou positionnez <br>var mode = "javascript"; <br>dans form.js</p>
 			</div>
 			  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="(siteId[formNames[$index]]||mode=='javascript')&&!config[$index].Text">
 				<div class ="form-group">
