@@ -80,7 +80,7 @@
 				<p ng-if="config[$index].HelpText" ng-bind-html="strReplace(config[$index].HelpText,config[$index],$index)"></p>
 			</div>
 			<div class="alert alert-danger" ng-if="!siteId[formNames[$index]]&&showWarning&&mode!='javascript'&&!config[$index].Text">
-				<p>Boutique non répertoriée. <br>Configurez la boutique dans key.ini ou positionnez <br>var mode = "javascript"; <br>dans form.js</p>
+				<p ng-bind-html="noShopText[language]"></p>
 			</div>
 			  <form method="post" name={{formNames[$index]}} action="" ng-show="formShow[parentindex]||!iframe[parentindex]" ng-if="(siteId[formNames[$index]]||mode=='javascript')&&!config[$index].Text">
 				<div class ="form-group">
@@ -217,7 +217,7 @@
 					<label for ="vads_payment_cards">vads_payment_cards</label>
 					<div class="cards">
 						<input type="text" class="form-control" name="vads_payment_cards" id="vads_payment_cards"
-							   value="" placeholder="Survolez une icône pour afficher la valeur" readonly>
+							   value="" placeholder={{cardsText[language]}} readonly>
 					</div>
 				</div> 
 				<div class="form-group row" ng-if="isCards[parentindex]">

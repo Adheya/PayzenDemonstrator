@@ -130,6 +130,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	
 	$scope.urlName = $routeParams.name;
 	$scope.urlType = $routeParams.type;
+	
+
 
 	
 	if ($scope.urlType) {
@@ -211,6 +213,11 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 	}
 	
 	
+	$scope.language = language;
+	
+	$scope.noShopText = noShopText;
+	
+	$scope.cardsText = cardsText;
 	
 	$scope.colSize = [];
 
@@ -553,14 +560,8 @@ myApp.controller('ctrl', function ($scope,$http,$routeParams,$timeout) {
 		//$scope.iframeUrl[formid] = json.url_forms; 
 		if (urlReturn=="detail"){
 			var loc = document.location.href;
-			if (document.location.href.search("demo.d.pzen.eu")!=-1){
-				var ret = "http://demo.d.pzen.eu/returndebug.html?return=" + loc.replace("#","$");
-				$scope.url_return[index] = ret;
-			}
-			else {
-				var ret = "http://demo.pzen.eu/returndebug.html?return=" + loc.replace("#","$");
-				$scope.url_return[index] = ret;
-			}
+			var ret = loc.split("#")[0] + "returndebug.html?return=" + loc.replace("#","$");
+			$scope.url_return[index] = ret;
 		}
 		else if(!document.forms[formid].elements["vads_url_return"].value){
 			$scope.url_return[index] = document.location.href;

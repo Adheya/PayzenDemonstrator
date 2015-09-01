@@ -7,6 +7,8 @@
 // @license   The MIT License (MIT)  see /LICENSE
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// language : choose the application language. See lang.js for the available values. 
+var language = "FR";
 
 //  menu : define menu to display
 //   syntax ["url|Text", …]
@@ -46,14 +48,19 @@ var returnTimeout = "10";
 //  debug : allows to display an intermediate page with the parameters
 //   html : displays as an html form the parmameters submited to Payzen
 //   text : displays as key values the parameters
-//   no   : "debut" checkbox not displayed
+//   no   : "debug" checkbox not displayed
 //
 //  note about urlReturn & returnTimeout
 //  note about javascript
 //
 var debug = "html";
 
+
+// vads_contrib : allows to add a "vads_contrib" field filled with "Menu/Anchor"
+// true : adds the field
+// false : does not add the field
 var vads_contrib = "true";
+
 
 
 // currencyTab : define Currency table to display Human readable informations on the examples :)
