@@ -62,6 +62,7 @@
 			 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">html/text</button>
 			 <button type="button" class="btn btn-default navbar-btn" ng-click="prec();">Return</button>
 		  </div>
+		<div class = "pull-right">{debugTopText}</div>
 		</nav>
 
 	
@@ -72,7 +73,10 @@
 </code>
 <div  ng-repeat="item in fields" ng-if="!html&&item.name!='urlSubmit'&&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">vads_{{item.name}}  {{item.value}}</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">{{item.name}}  {{item.value}}</div></div>
 </pre>
-			<form id="form1" name="form1"   method="post"><!--Prevent double UF8 encoding -->
+			<div class="alert alert-warning">
+				{debugBottomText}
+			</div>
+			<form id="form1" name="form1"   method="post">
 				<div class = "form-group" ng-repeat="item in fields track by $index" ng-if="item.name!='shop'">
 					<input type="hidden" name={{item.name}} id={{item.name}} value={{item.value}}>
 				</div>
