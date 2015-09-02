@@ -1,11 +1,11 @@
 var configs =[
 
-// Abonnement mensuel Sepa 
+// SEPA - Abonnement mensuel sauf Aout
 {
     "Shop":"DemoSEPA",
     "Anchor":"aboPresseSDDsubscribe",
     "Menu": "press",
-    "Title": "Abonnement mensuel Sepa",
+    "Title": "Abonnement Sepa mensuel sauf Août",
     "Description":"Exemple d'abonnement à une revue mensuelle ne paraissant pas le mois d'août.<br>Payement de $vads_sub_amount$  par prélèvement Sepa onze mois par ans, le prélèvement est effectué le mercredi de la semaine d'abonnement ",
     "Help":"yes",
     "Type":"hidden",
@@ -68,7 +68,7 @@ var configs =[
 
 // Abonnement mensuel Sepa et CB
 {
-    "Shop":"DemoSEPA",
+    "Shop":"DemoSEPASMS",
     "Anchor":"aboPresseCBSDDpaySubscribe",
     "Menu": "press",
     "Title": "Abonnement mensuel",
@@ -76,6 +76,7 @@ var configs =[
 
     "Help":"yes",
     "Type":"hidden",
+    "Input":["vads_cust_cell_phone","vads_cust_email"],
     "Readonly":["vads_page_action","vads_sub_effect_date","vads_sub_desc"],
 
     "vads_ctx_mode":"TEST",
@@ -83,7 +84,7 @@ var configs =[
     "vads_payment_config":"SINGLE",
     "vads_version":"V2",
 
-    "vads_amount":"100",
+    "vads_amount":"150",
     "vads_currency":"978",
 
     "vads_page_action":"REGISTER_PAY_SUBSCRIBE",
@@ -93,58 +94,16 @@ var configs =[
     "vads_sub_effect_date":(moment().utc().add(1,'month').format('YYYYMMDD')),
 
     "vads_cust_id":(moment().format('YYMMDD-HHmmss')),
-    "vads_cust_email":"demo@pzen.eu",
     "vads_order_info":"Abonnement souscrit le "+(moment().locale("fr").format('LLLL')),
+    "vads_cust_email":"demo@pzen.eu",
+    "vads_cust_cell_phone":"",
+    "vads_cust_country":"fr",
 
-
-	"ButtonText":"Vous pouvez payer par carte bancaire ou par prélèvement Sepa",
+    "ButtonText":"Vous pouvez payer par carte bancaire ou par prélèvement Sepa",
     "Button":["CB","SDD"]
 },
 
-// void
-{
-    "Shop":"DemoMax",
-    "Anchor":"DemoSSD",
-    "Menu": "press2",
-    "Title": "Abonnement en prélèvement ",
-    "Description":"SSD. ",
 
-    "Help":"yes",
-    "Type":"hidden",
-    "Readonly":["vads_action_mode","vads_amount","vads_payment_config","vads_payment_cards","vads_currency","vads_capture_delay","vads_sub_currency","vads_sub_amount","vads_sub_effect_date","vads_sub_desc","vads_sub_init_amount_number","vads_sub_init_amount"],
-    "HelpText":"Description détaillée de l'exemple",
-
-    //vads_site_id : define via the shop parameter
-    "vads_ctx_mode":"TEST",
-    //vads_trans_id : define via random function
-    //vads_trans_date  define automatically
-    "vads_amount":"490",
-    "vads_currency":"978",
-    "vads_action_mode":"INTERACTIVE",
-    "vads_page_action":"REGISTER_PAY_SUBSCRIBE",
-    "vads_version":"V2",
-    "vads_payment_config":"SINGLE",
-
-    "vads_sub_amount":"2490",
-    "vads_sub_currency":"978",
-    "vads_sub_desc":"RRULE:FREQ=MONTHLY;BYMONTHDAY=14",
-    "vads_sub_effect_date":"20150714",
-    "vads_sub_init_amount":"1490",
-    "vads_sub_init_amount_number":"3",
-    "vads_capture_delay":"0",
-
-
-    "vads_payment_cards":"CB",
-    "vads_order_info":"Abonnement souscrit le",
-    "vads_cust_first_name":"Roger",
-    "vads_cust_last_name":"Parslow",
-    "vads_cust_phone":"0707070707",
-    "vads_cust_email":"demo@pzen.eu",
-    "vads_validation_mode":"1",
-    "vads_validation_mode":"1",
-    "vads_theme_config":"MERCHANT_MESSAGE=Offre promotionnelle, 7.90€ pour un essai de 14 jours, puis 3 mois à 14.90, les mois suivants à 24.90 € sans engagement de durée;",
-    "ButtonText":"Je paye en 3 fois"
-}
 
 ];
 config = config.concat(configs);
