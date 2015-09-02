@@ -1,15 +1,28 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-// Localisation file 
-//  you can add mode languages using 3166-1 for country code
+// Localisation file
+//  you can add languages please use 3166-1 for country code
 //
 // @license   The MIT License (MIT)  see /LICENSE
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var noShopText   = [];
-var cardsText    = [];
-noShopText["FR"] = "Boutique non répertoriée. <br>Configurez la boutique dans key.ini ou positionnez <br>var mode = 'javascript'; <br>dans form.js";
-cardsText["FR"]  = "Survolez une icône pour afficher la valeur";
-noShopText["EN"] = "Undefined shop. <br>Set the shop in the key.ini file or place<br>var mode = 'javascript'; <br>in the form.js file";
-cardsText["EN"]  = "Place the mouse over an icon to display the value";
+var noShopText      = [];  // Displayed if site_id doesn't exist in config/key.ini
+var cardsText       = [];  // Displayed
+var debugTopText    = [];
+var debugBottomText = [];
+var returnTopText   = [];
+
+// FR - French
+noShopText["FR"]      = "Boutique non répertoriée. <br>Configurez la boutique dans key.ini ou positionnez <br>var mode = 'javascript'; <br>dans form.js";
+cardsText["FR"]       = "Survolez une icône pour afficher la valeur";
+debugTopText["FR"]    = "fr - debugTopText";
+debugBottomText["FR"] = "fr - debugBottomText";
+returnTopText["FR"]   = "fr - returnTopText";
+
+// EN - English
+noShopText["EN"]      = "Undefined shop. <br>Set the shop in the key.ini file or place<br>var mode = 'javascript'; <br>in the form.js file";
+cardsText["EN"]       = "Place the mouse over an icon to display the value";
+debugTopText["EN"]    = "en - debugTopText";
+debugBottomText["EN"] = "en - debugBottomText";
+returnTopText["EN"]   = "en - returnTopText";
 
 // End
