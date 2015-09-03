@@ -32,7 +32,7 @@ var mode = "javascript";
 //  urlReturn : allows to overide the shop parameters to force return to the script
 //               this is done by adding 'vads_url_return' to the form and 'vads_return_mode' in GET mode
 //   self   : when the payor hit "retun to shop" he'll be redirected to the script page
-//   detail : with this option an extra page is added to desplai the parameters returned by Payzen
+//   detail : with this option an extra page is added to display the parameters returned by Payzen
 //   no     : return will be done accordling to Shop parameters (no parameters added to the submited form)
 //
 var urlReturn = "detail"; //self ou detail. detail permet à la page de paiement d'effectuer un retour sur une page qui affiche les champs transmis lors du paiement.

@@ -15,7 +15,7 @@ var returnTopText   = [];
 noShopText["FR"]      = "Boutique non répertoriée. <br>Configurez la boutique dans key.ini ou positionnez <br>var mode = 'javascript'; <br>dans form.js";
 cardsText["FR"]       = "Survolez une icône pour afficher la valeur";
 debugTopText["FR"]    = "fr - debugTopText";
-debugBottomText["FR"] = "fr - debugBottomText";
+debugBottomText["FR"] = "Les paramètres 'vads_redirect_error_timeout' et 'vads_redirect_success_timeout' sont fixés par la variable 'returnTimeout' de form.js.<br>'vads_url_return' et 'vads_return_mode' sont fixés par la variable 'urlReturn' de form.js.";
 returnTopText["FR"]   = "fr - returnTopText";
 
 // EN - English

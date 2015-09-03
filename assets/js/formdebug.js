@@ -38,7 +38,7 @@
  * @version   X.X.X (revision xxxxxxx)
 */ 
 
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ngSanitize']);
 myApp.controller('ctrl', function ($scope,$http) {
 	$http.get('database/dico.json').
     success(function(data, status, headers, config) {
