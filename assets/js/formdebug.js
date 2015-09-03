@@ -57,6 +57,10 @@ myApp.controller('ctrl', function ($scope,$http) {
 	}
 	
 	
+	$scope.language = language;
+	$scope.returnTopText = returnTopText;
+	$scope.debugTopText = debugTopText;
+	$scope.debugBottomText = debugBottomText;
 	var urlParams = [];
 	var shop ;
 	$scope.urlSubmit = "" ;

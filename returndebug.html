@@ -50,6 +50,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/formdebug.js"></script>
 		<script type="text/javascript" src="config/form.js"></script>
+		<script type="text/javascript" src="config/lang.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
@@ -58,12 +59,14 @@
 	<div class="container">
 		
 	<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">Toggle Help</button>
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="return()">Return</button>
-		  </div>
-		<div class = "pull-right">{returnTopText}</div>
-		</nav>
+		<div class="container-fluid">
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+				 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">Toggle Help</button>
+				 <button type="button" class="btn btn-default navbar-btn" ng-click="return()">Return</button>
+				 <p class="navbar-text navbar-right">{{returnTopText[language]}}</p>
+			</div>
+		</div>
+	</nav>
 
 	
 		<pre><code class="language-html" data-lang="html" ng-if="html"><div ng-repeat="item in fields track by $index" ng-if="item.name!='shop'&&item.name!='vads_url_return'&&item.name!='return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><span class="glyphicon glyphicon-question-sign"aria-hidden="true" ng-mouseenter="toggle[$index]=!toggle[$index];" ng-mouseleave="toggle[$index]=!toggle[$index];"></span><font color="blue"> {{item.name}}</font>   <font color="red">{{item.value}}</font> <h5><span class="label label-default" ng-if="toggle[$index]">{{getDescription(item.name)}}</span></h5></div>

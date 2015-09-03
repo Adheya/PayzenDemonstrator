@@ -50,6 +50,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/formdebug.js"></script>
 		<script type="text/javascript" src="config/form.js"></script>
+		<script type="text/javascript" src="config/lang.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link rel="stylesheet" href="assets/css/styles.css">
@@ -57,24 +58,27 @@
 	<body ng-controller="ctrl">
 	<div class="container">
 		
-	<nav class="navbar navbar-default">
-		  <div class="container-fluid">
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">html/text</button>
-			 <button type="button" class="btn btn-default navbar-btn" ng-click="prec();">Return</button>
-		  </div>
-		<div class = "pull-right">{debugTopText}</div>
-		</nav>
+
+		
+  <nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
+			<button type="button" class="btn btn-default navbar-btn navbar-left" ng-click="html=!html">html/text</button>
+			<button type="button" class="btn btn-default navbar-btn navbar-left" ng-click="prec();">Return</button>
+			<p class="navbar-text navbar-right">{{debugTopText[language]}}</p>
+		</div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+ </nav>
 
 	
 <pre>
 <code class="language-html" data-lang="html" ng-if="html">
 &lt;form action="<font color ='green'>{{urlSubmit}}</font>"&gt;
-<div ng-repeat="item in fields" ng-if="item.name!='urlSubmit' &&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">vads_{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div></div>&lt;/form&gt;
-</code>
-<div  ng-repeat="item in fields" ng-if="!html&&item.name!='urlSubmit'&&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">vads_{{item.name}}  {{item.value}}</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">{{item.name}}  {{item.value}}</div></div>
+<div ng-repeat="item in fields" ng-if="item.name!='urlSubmit' &&item.name!='shop'&&item.name!='vads_url_return'&&item.name!='vads_return_mode'&&item.name!='vads_redirect_success_timeout'&&item.name!='vads_redirect_error_timeout'"><div ng-show="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">vads_{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div><div ng-hide="item.name=='url_return'||item.name=='return_mode'||item.name=='redirect_success_timeout'||item.name=='redirect_error_timeout'">  &lt;input type="hidden" name="<font color="blue">{{item.name}}</font>" value="<font color="red">{{item.value}}</font>"&gt;</div></div>
+<div ng-repeat="item in fields" ng-if="item.name=='vads_url_return'||item.name=='vads_return_mode'||item.name=='vads_redirect_success_timeout'||item.name=='vads_redirect_error_timeout'">  <font color="#848484">&lt;input type="hidden" name="</font><font color="#8181F7">{{item.name}}</font><font color="#848484">" value="</font><font color="#F78181">{{item.value}}</font><font color="#848484">"&gt;</font></code>
 </pre>
 			<div class="alert alert-warning">
-				{debugBottomText}
+				{{debugBottomText[language]}}
 			</div>
 			<form id="form1" name="form1"   method="post">
 				<div class = "form-group" ng-repeat="item in fields track by $index" ng-if="item.name!='shop'">
