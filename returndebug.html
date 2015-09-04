@@ -47,6 +47,7 @@
 		<title>Formulaire</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="js/angular.min.js"></script>
+		<script src="js/angular-sanitize.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/js/formdebug.js"></script>
 		<script type="text/javascript" src="config/form.js"></script>
@@ -61,8 +62,8 @@
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
-				 <button type="button" class="btn btn-default navbar-btn" ng-click="html=!html">Toggle Help</button>
-				 <button type="button" class="btn btn-default navbar-btn" ng-click="return()">Return</button>
+				 <button type="button" class="btn btn-default navbar-btn navbar-left" ng-click="html=!html">Toggle Help</button>
+				 <button type="button" class="btn btn-default navbar-btn navbar-left" ng-click="return()">Return</button>
 				 <p class="navbar-text navbar-right">{{returnTopText[language]}}</p>
 			</div>
 		</div>
