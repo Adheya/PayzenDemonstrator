@@ -23,7 +23,7 @@ var pageTitle = "Demo Payzen";
 
 //  mode : define if it's simultation or test
 //   javascript : simulation mode - no call to payzen is done, can be used for evaluation or education without payzen shop
-//   php        : use the PHP wrapper to calculate and veify signature and allow to call Payzen using key.ini parameters
+//   php        : use the PHP wrapper to calculate and verify signature and allow to call Payzen using key.ini parameters
 //       others languages can be added
 //
 var mode = "javascript";
