@@ -1,0 +1,3 @@
+# do not respond for git files
+RedirectMatch 404 /\.git
+
