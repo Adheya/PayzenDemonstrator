@@ -1,6 +1,8 @@
-# Ignore files
+## Ignore files
+# main file
 index.html
-# Config fies
+# Config files
+key.ini
 form.js
 *.form.js
 # End
