@@ -2,7 +2,7 @@
 # main file
 index.html
 # Config files
-key.ini
-form.js
-*.form.js
+config/key.ini
+config/form.js
+config/*.form.js
 # End
